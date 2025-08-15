@@ -1,0 +1,113 @@
+<section id="historia" class="container animate-on-scroll">
+  <img 
+    src="/images/SVG/aside-decoration-2.svg" 
+    alt="Decoración lateral" 
+    class="decoration-aside anim-item" 
+  />
+
+  <div class="title-wrapper anim-item">
+    <h1>Nuestra historia</h1>
+    <span class="title-divider"></span>
+  </div>
+
+  <p class="anim-item">
+    Hace algunos años, en un lugar que ninguno de los dos imaginaba, nuestras miradas se cruzaron por primera vez. Lo que comenzó como una simple conversación se convirtió en incontables aventuras, risas y sueños compartidos. Desde aquel día, hemos caminado juntos, apoyándonos en cada paso, aprendiendo, creciendo y, sobre todo, amándonos cada vez más.
+  </p>
+  <p class="anim-item">
+    Hoy, queremos celebrar ese camino que hemos recorrido y dar el siguiente paso en nuestra historia: unir nuestras vidas para siempre, rodeados de las personas que más queremos.
+  </p>
+
+  <img 
+    src="/images/SVG/aside-decoration.svg" 
+    alt="Decoración lateral" 
+    class="decoration-aside rotate anim-item" 
+  />
+</section>
+
+<style>
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem; /* 40px */
+    color: var(--color-gray);
+    padding: 5rem 6%; /* 3. Padding vertical reducido */
+    padding-top: 0px;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .title-wrapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: var(--font-cursive);
+    font-weight: 600;
+    color: var(--color-green); /* 4. Título en color verde */
+  }
+  
+  .title-divider {
+    width: 80%;
+    height: 2px;
+    background-color: var(--color-green); /* 5. Línea decorativa verde */
+  }
+
+  p {
+    text-align: center;
+    font-size: var(--font-4);
+    line-height: 1.6;
+    max-width: 800px; /* Un ancho cómodo para la lectura */
+    margin: 0;
+  }
+
+  .decoration-aside {
+    position: absolute;
+    width: 350px;
+    left: -150px;
+    z-index: -1;
+  }
+
+  .decoration-aside:not(.rotate) {
+    bottom: 3%;
+    top: unset;
+  }
+
+  .decoration-aside.rotate {
+    top: -1%;
+    right: -150px;
+    left: inherit;
+  }
+
+  /* --- ANIMACIONES --- */
+  .anim-item {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  :global(.animate) .anim-item {
+    animation: slideInUp 0.8s ease-out forwards;
+  }
+
+  /* Animación en cascada */
+  :global(.animate) .title-wrapper { animation-delay: 0.2s; }
+  :global(.animate) p:nth-of-type(1) { animation-delay: 0.4s; }
+  :global(.animate) p:nth-of-type(2) { animation-delay: 0.6s; }
+  :global(.animate) .decoration-aside { animation-delay: 0.8s; }
+
+
+  /* --- MEDIA QUERIES --- */
+  @media (max-width: 900px) {
+    .container {
+      padding: 4rem 8%;
+      gap: 1.5rem;
+    }
+    h1 { font-size: var(--font-2); }
+    p { font-size: var(--font-5); }
+    .decoration-aside { display: none; /* Ocultamos las decoraciones en móvil para no saturar */ }
+  }
+</style>

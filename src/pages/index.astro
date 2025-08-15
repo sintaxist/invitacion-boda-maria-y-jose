@@ -1,16 +1,31 @@
 ---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
 
+import Hero from '@/sections/Hero.astro';
+import Historia from '@/sections/Historia.astro';
 ---
+<Layout>
+  <Header />
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <main>
+    <div class="main-background">
+      <Hero />
+      <Historia />
+    </div>
+
+    <section id="detalles"></section>
+    <section id="registro"></section>
+    <section id="galeria"></section>
+    <section id="hospedaje"></section>
+  </main>
+</Layout>
+
+<style>
+  .main-background {
+    background-image: url("/images/PNG/background-texture.png");
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+</style>

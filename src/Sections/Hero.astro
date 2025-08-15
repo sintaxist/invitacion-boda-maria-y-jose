@@ -1,0 +1,245 @@
+---
+import Decoration from "@/components/Decoration.astro";
+---
+
+<section id="inicio" class="container animate-on-scroll">
+  <article>
+    <div class="titleContainer">
+      <div class="decoration-wrapper anim-item">
+        <Decoration />
+      </div>
+      <h4 class="anim-item">¡Nos casamos!</h4>
+      <h1 class="anim-item">María y José</h1>
+      <h4 class="anim-item">18 de Octubre del 2025</h4>
+      <span class="line-divider anim-item"></span>
+      <div id="countdown-timer" class="countdown-timer anim-item">
+        00d : 00h : 00m : 00s
+      </div>
+      <span class="line-divider anim-item"></span>
+      <div class="decoration-wrapper anim-item">
+        <Decoration rotate={true} />
+      </div>
+    </div>
+    <div class="imgContainer anim-item">
+      <img
+        class="imgHero"
+        width="1150"
+        height="1517"
+        src="/images/PNG/MariaJose.png"
+        alt="Foto de María y José"
+      />
+    </div>
+  </article>
+</section>
+
+<style>
+  .container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    overflow: hidden;
+    color: var(--color-gray);
+    box-sizing: border-box;
+  }
+
+  article {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+  }
+
+  .titleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .titleContainer h4 {
+    font-size: var(--font-4);
+    font-weight: normal;
+    letter-spacing: 7px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  .titleContainer h1 {
+    font-size: var(--font-cursive);
+    font-weight: 700;
+    color: var(--color-brown);
+    text-align: center;
+    line-height: 1;
+  }
+
+  .imgContainer {
+    position: relative;
+    width: 50%;
+    min-width: 300px;
+  }
+
+  .imgHero {
+    width: 100%;
+    height: auto;
+  }
+
+  .countdown-timer {
+    color: var(--color-gray);
+    font-size: var(--font-3);
+    font-weight: bold;
+    letter-spacing: 7px;
+    text-align: center;
+    width: 100%;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .line-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-brown);
+  }
+
+  /* --- ANIMACIONES --- */
+
+  .anim-item {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  @keyframes slideInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 1. Reducimos la duración base de la animación */
+  .container.animate .anim-item {
+    animation: slideInUp 0.6s ease-out forwards;
+  }
+
+  /* 2. Comprimimos la secuencia de retrasos */
+  .container.animate .titleContainer .anim-item:nth-child(1),
+  .container.animate .titleContainer .anim-item:nth-child(8) {
+    animation-delay: 0s; /* Los decoradores inician de inmediato */
+  }
+
+  .container.animate .imgContainer.anim-item {
+    animation-delay: 0.3s;
+  }
+
+  .container.animate .titleContainer .anim-item:nth-child(2) {
+    animation-delay: 0.3s;
+  } /* ¡Nos casamos! */
+  .container.animate .titleContainer .anim-item:nth-child(3) {
+    animation-delay: 0.4s;
+  } /* Nombres */
+  .container.animate .titleContainer .anim-item:nth-child(4) {
+    animation-delay: 0.5s;
+  } /* Fecha */
+  .container.animate .titleContainer .anim-item:nth-child(5) {
+    animation-delay: 0.6s;
+  } /* Línea 1 */
+  .container.animate .titleContainer .anim-item:nth-child(6) {
+    animation-delay: 0.7s;
+  } /* Contador */
+  .container.animate .titleContainer .anim-item:nth-child(7) {
+    animation-delay: 0.8s;
+  } /* Línea 2 */
+
+  /* --- MEDIA QUERIES --- */
+  @media (max-width: 900px) {
+    .container {
+      padding-top: 120px;
+    }
+
+    article {
+      flex-direction: column;
+      gap: 50px;
+    }
+
+    .titleContainer {
+      width: 100%;
+      gap: 20px;
+    }
+
+    .imgContainer {
+      width: 80%;
+      max-width: 400px;
+    }
+
+    .line-divider {
+      max-width: 400px;
+    }
+
+    .titleContainer h1 {
+      font-size: var(--font-1);
+    }
+    .titleContainer h4 {
+      font-size: var(--font-5);
+      letter-spacing: 5px;
+    }
+    .countdown-timer {
+      font-size: var(--font-4);
+      letter-spacing: 5px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    article {
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .countdown-timer {
+      font-size: var(--font-5);
+    }
+  }
+</style>
+
+<script>
+  const countdownDate = new Date("Oct 18, 2025 23:59:59").getTime();
+
+  const timerEl = document.getElementById("countdown-timer");
+
+  const countdownFunction = setInterval(() => {
+    if (!timerEl) {
+      clearInterval(countdownFunction);
+      return;
+    }
+
+    const now = new Date().getTime();
+    const distance = countdownDate - now;
+
+    if (distance < 0) {
+      clearInterval(countdownFunction);
+      timerEl.innerHTML = "¡El día ha llegado!";
+      return;
+    }
+
+    // Cálculos de tiempo
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Usamos .padStart(2, '0') para asegurar que siempre haya dos dígitos
+    const daysFormatted = String(days).padStart(2, "0");
+    const hoursFormatted = String(hours).padStart(2, "0");
+    const minutesFormatted = String(minutes).padStart(2, "0");
+    const secondsFormatted = String(seconds).padStart(2, "0");
+
+    // Construimos el string final y lo insertamos en el HTML
+    timerEl.innerHTML = `${daysFormatted}d : ${hoursFormatted}h : ${minutesFormatted}m : ${secondsFormatted}s`;
+  }, 1000);
+</script>

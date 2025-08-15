@@ -1,0 +1,487 @@
+---
+
+const sections = [
+  { id: "inicio", text: "Inicio" },
+  { id: "historia", text: "Nuestra historia" },
+  { id: "detalles", text: "Detalles de la boda" },
+  { id: "registro", text: "Confirma tu asistencia" },
+  { id: "galeria", text: "Galería" },
+  { id: "hospedaje", text: "Hospedaje cercano" },
+];
+---
+
+<header class="header">
+  <a href="#inicio" class="logo-link">
+    <img
+      width="60"
+      height="auto"
+      src="/images/SVG/LogoHeader.svg"
+      alt="Logo de la boda"
+    />
+    <img
+      class="logo-flower"
+      width="60"
+      height="auto"
+      src="/images/SVG/Flower.svg"
+      alt="Flor decorativa"
+    />
+  </a>
+
+  <nav class="navigation">
+    <ul class="menu-desk">
+      {
+        sections.map((section) => (
+          <li>
+            <a href={`#${section.id}`} data-section-id={section.id}>
+              {section.text}
+            </a>
+          </li>
+        ))
+      }
+      <div class="line"></div>
+    </ul>
+
+    <button class="menu-trigger" aria-label="Abrir menú">
+      <div class="bars"></div>
+      <span>Menú</span>
+    </button>
+  </nav>
+
+  <div class="menu-mobile">
+    <div class="menu-content">
+      <ul>
+        {
+          sections.map((section) => (
+            <li class="menu-item">
+              <a href={`#${section.id}`} data-section-id={section.id}>
+                {section.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 6%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .logo-link {
+    position: relative;
+    display: inline-block;
+  }
+
+  .logo-link img {
+    width: 90px;
+    height: auto;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  .logo-link:hover img {
+    opacity: 0.5;
+  }
+
+  .logo-flower {
+    width: 60px !important;
+    height: 60px !important;
+    position: absolute;
+    bottom: -35px;
+    right: -40px;
+    animation: floatAnimation 3s ease-in-out infinite;
+  }
+
+  .menu-desk {
+    position: relative;
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    gap: 10px;
+  }
+
+  .menu-desk li a {
+    font-size: var(--font-6);
+    color: var(--color-gray);
+    font-weight: 400;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+
+  .menu-desk li a:hover {
+    color: var(--color-brown); /* <-- ESTADO HOVER AÑADIDO */
+  }
+
+  .menu-desk li.is-active a {
+    color: var(--color-brown);
+  }
+
+  .menu-desk .line {
+    position: absolute;
+    bottom: 0;
+    height: 2px;
+    background: var(--color-brown);
+    border-radius: 100px;
+    transition:
+      left 0.5s ease,
+      width 0.5s ease;
+  }
+
+  .menu-trigger {
+    display: none;
+    z-index: 10;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    color: var(--color-gray);
+    text-align: center;
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .menu-trigger span {
+    position: absolute;
+    bottom: -9px;
+    left: 5px;
+    font-size: var(--font-6);
+  }
+
+  .menu-trigger .bars {
+    position: relative;
+    width: 28px;
+    height: 4px;
+    background-color: var(--color-gray);
+    border-radius: 4px;
+    transition: 0.2s ease-in-out;
+    margin: auto;
+  }
+
+  .menu-trigger .bars::before,
+  .menu-trigger .bars::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 28px;
+    height: 4px;
+    background-color: var(--color-gray);
+    border-radius: 4px;
+    transition: 0.2s ease-in-out;
+  }
+
+  .menu-trigger .bars::before {
+    transform: translateY(-10px);
+  }
+
+  .menu-trigger .bars::after {
+    transform: translateY(10px);
+  }
+
+  .menu-trigger.is-active {
+    transform: rotate(-45deg);
+  }
+  .menu-trigger.is-active span {
+    transform: rotate(45deg) translate(-15px, 7px);
+  }
+  .menu-trigger.is-active .bars {
+    background-color: var(--color-brown);
+  }
+  .menu-trigger.is-active .bars::before,
+  .menu-trigger.is-active .bars::after {
+    transform: translateY(0) rotate(-90deg);
+    background-color: var(--color-brown);
+  }
+
+  .menu-mobile {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-white);
+    transition: left 0.7s cubic-bezier(0.645, 0.045, 0.355, 1);
+    z-index: 9;
+    border-left: 1px solid var(--color-gray);
+  }
+
+  .menu-mobile.is-active {
+    left: 0;
+  }
+
+  .menu-mobile .menu-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -50%);
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+  .menu-mobile.is-active .menu-content {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0.5s;
+  }
+
+  .menu-mobile ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .menu-mobile .menu-item a {
+    position: relative;
+    display: inline-block;
+    padding: 1rem;
+    color: var(--color-gray);
+    text-decoration: none;
+    font-size: var(--font-2);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: 0.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    cursor: pointer;
+  }
+
+  .menu-mobile .menu-item a::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    content: "";
+    display: inline-block;
+    width: 0px;
+    height: 2px;
+    background-color: var(--color-gray);
+    border-radius: 100px;
+    transition: all 0.3s ease;
+  }
+
+  .menu-mobile .menu-item a:hover::before {
+    width: 100%;
+  }
+
+  .menu-mobile.is-active .menu-item a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .menu-mobile.is-active .menu-item:nth-child(1) a {
+    transition-delay: 0.3s;
+  }
+  .menu-mobile.is-active .menu-item:nth-child(2) a {
+    transition-delay: 0.35s;
+  }
+  .menu-mobile.is-active .menu-item:nth-child(3) a {
+    transition-delay: 0.4s;
+  }
+  .menu-mobile.is-active .menu-item:nth-child(4) a {
+    transition-delay: 0.45s;
+  }
+  .menu-mobile.is-active .menu-item:nth-child(5) a {
+    transition-delay: 0.5s;
+  }
+  .menu-mobile.is-active .menu-item:nth-child(6) a {
+    transition-delay: 0.55s;
+  }
+
+  .menu-mobile .menu-item.is-active a {
+    color: var(--color-brown);
+  }
+
+  .menu-mobile .menu-item.is-active a::before {
+    width: 100%;
+    background-color: var(--color-brown);
+  }
+
+  @media (max-width: 900px) {
+    .header {
+      padding: 15px 8%;
+      background-color: var(--color-white);
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .header .logo-link img {
+      width: 60px;
+    }
+    .logo-flower {
+      width: 30px !important;
+      height: 30px !important;
+      position: absolute;
+      bottom: -15px;
+      right: -20px;
+    }
+    .menu-desk {
+      display: none;
+    }
+    .menu-mobile,
+    .menu-trigger {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .menu-mobile ul {
+      gap: 10px;
+    }
+    .menu-mobile .menu-item a {
+      font-size: var(--font-3);
+    }
+  }
+
+  @keyframes floatAnimation {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  function setupHeader() {
+    // Añadimos "as HTMLElement" para especificar el tipo de elemento
+    const header = document.querySelector(".header") as HTMLElement;
+    const menuDeskItems = document.querySelectorAll(".menu-desk li");
+    const menuDeskLinks = document.querySelectorAll(
+      ".menu-desk a[data-section-id]"
+    );
+    const line = document.querySelector(".menu-desk .line") as HTMLElement;
+    const menuTrigger = document.querySelector(".menu-trigger") as HTMLElement;
+    const menuMobile = document.querySelector(".menu-mobile") as HTMLElement;
+
+    // La comprobación sigue siendo una buena práctica
+    if (
+      !header ||
+      !line ||
+      !menuTrigger ||
+      !menuMobile ||
+      menuDeskLinks.length === 0
+    ) {
+      return;
+    }
+
+    menuTrigger.addEventListener("click", () => {
+      menuTrigger.classList.toggle("is-active");
+      menuMobile.classList.toggle("is-active");
+    });
+
+    const updateActiveSection = () => {
+      const headerHeight = header.offsetHeight; // Ahora esto es válido
+      let currentSectionId = "";
+
+      menuDeskLinks.forEach((link) => {
+        const sectionId = link.getAttribute("data-section-id");
+        if (sectionId) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (
+              rect.top <= window.innerHeight / 2 &&
+              rect.bottom >= headerHeight
+            ) {
+              currentSectionId = sectionId;
+            }
+          }
+        }
+      });
+
+      updateActiveClass(currentSectionId || "inicio");
+      moveLineToActive();
+    };
+
+    // Le indicamos a TypeScript que activeId será un string
+    const updateActiveClass = (activeId: string) => {
+      menuDeskItems.forEach((item) => {
+        const link = item.querySelector("a");
+        if (link && link.getAttribute("data-section-id") === activeId) {
+          item.classList.add("is-active");
+        } else {
+          item.classList.remove("is-active");
+        }
+      });
+      document.querySelectorAll(".menu-mobile .menu-item").forEach((item) => {
+        const link = item.querySelector("a");
+        if (link && link.getAttribute("data-section-id") === activeId) {
+          item.classList.add("is-active");
+        } else {
+          item.classList.remove("is-active");
+        }
+      });
+    };
+
+    const moveLineToActive = () => {
+      // Aquí también especificamos el tipo del elemento activo
+      const activeItem = document.querySelector(
+        ".menu-desk li.is-active"
+      ) as HTMLElement;
+      if (activeItem) {
+        line.style.left = `${activeItem.offsetLeft}px`; // Válido
+        line.style.width = `${activeItem.offsetWidth}px`; // Válido
+      }
+    };
+
+    // Indicamos que 'e' es un evento
+    const smoothScrollToSection = (e: Event) => {
+      e.preventDefault();
+      // Especificamos que el objetivo del evento es un enlace
+      const target = e.currentTarget as HTMLAnchorElement;
+      const sectionId = target.getAttribute("href");
+
+      if (sectionId) {
+        const targetElement = document.querySelector(sectionId);
+        if (targetElement) {
+          const headerHeight = header.offsetHeight;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition =
+            elementPosition + window.scrollY - headerHeight;
+
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+
+          if (menuMobile.classList.contains("is-active")) {
+            menuTrigger.classList.remove("is-active");
+            menuMobile.classList.remove("is-active");
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", updateActiveSection);
+
+    const allLinks = document.querySelectorAll('a[href^="#"]');
+    allLinks.forEach((link) => {
+      link.addEventListener("click", smoothScrollToSection);
+    });
+
+    updateActiveSection();
+    setTimeout(moveLineToActive, 100);
+  }
+
+  document.addEventListener("DOMContentLoaded", setupHeader);
+</script>
