@@ -1,0 +1,65 @@
+{
+  "header": {
+    "logoAlt": "Logo de la boda",
+    "flowerAlt": "Flor decorativa",
+    "sections": {
+      "inicio": "Inicio",
+      "historia": "Nuestra historia",
+      "detalles": "Detalles de la boda",
+      "galeria": "Galería",
+      "registro": "Confirma tu asistencia",
+      "hospedaje": "Hospedaje cercano"
+    },
+    "menu": {
+      "openAria": "Abrir menú",
+      "label": "Menú"
+    }
+  },
+  "hero": {
+    "subtitleTop": "¡Nos casamos!",
+    "title": "María y José",
+    "subtitleBottom": "18 de Octubre del 2025",
+    "countdown": "00d : 00h : 00m : 00s",
+    "imageAlt": "Foto de María y José"
+  },
+  "historia": {
+    "titulo": "Nuestra Historia",
+    "parrafo1": "Hace algunos años, en un lugar que ninguno de los dos imaginaba, nuestras miradas se cruzaron por primera vez. Lo que comenzó como una simple conversación se convirtió en incontables aventuras, risas y sueños compartidos. Desde aquel día, hemos caminado juntos, apoyándonos en cada paso, aprendiendo, creciendo y, sobre todo, amándonos cada vez más.",
+    "parrafo2": "Hoy, queremos celebrar ese camino que hemos recorrido y dar el siguiente paso en nuestra historia: unir nuestras vidas para siempre, rodeados de las personas que más queremos."
+  },
+  "detalles": {
+    "titulo": "Detalles de la boda",
+    "cards": [
+      {
+        "title": "Ceremonia",
+        "description": "Nos uniremos en matrimonio en la Parroquia de Santa María in Trastevere, Roma. Un lugar lleno de historia y significado, donde iniciaremos esta nueva etapa.",
+        "linkText": "Ver Ubicación",
+        "href": "https://maps.app.goo.gl/u5m7yS11sopn1Xx69"
+      },
+      {
+        "title": "Recepción",
+        "description": "Después de la ceremonia, celebraremos juntos en el Vaticano. Una noche para compartir risas, brindar y bailar bajo un escenario único en el mundo.",
+        "linkText": "Ver Ubicación",
+        "href": "https://maps.app.goo.gl/wzNCjDhbVs4EYnPx7"
+      },
+      {
+        "title": "Código de Vestimenta",
+        "description": "Etiqueta formal. Hombres con traje oscuro, mujeres con vestido largo. Los tonos claros y elegantes son bienvenidos para este día especial.",
+        "linkText": "Ver ideas en Pinterest",
+        "href": "https://mx.pinterest.com/danielamaciaseventos/c%C3%B3digo-de-vestimenta-boda-sd/"
+      }
+    ]
+  },
+  "galeria": {
+    "titulo": "Galería de Fotos",
+    "descripcion": "Un vistazo a los momentos que nos han traído hasta aquí. Fotos llenas de amor, aventuras y recuerdos que queremos compartir contigo antes de nuestro gran día.",
+    "images": [
+      { "src": "/images/JPG/galeria-1.jpg", "alt": "Foto de la galería de María y José 1" },
+      { "src": "/images/JPG/galeria-2.jpg", "alt": "Foto de la galería de María y José 2" },
+      { "src": "/images/JPG/galeria-3.jpg", "alt": "Foto de la galería de María y José 3" },
+      { "src": "/images/JPG/galeria-4.jpg", "alt": "Foto de la galería de María y José 4" },
+      { "src": "/images/JPG/galeria-5.jpg", "alt": "Foto de la galería de María y José 5" },
+      { "src": "/images/JPG/galeria-6.jpg", "alt": "Foto de la galería de María y José 6" }
+    ]
+  }
+}

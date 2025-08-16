@@ -1,5 +1,7 @@
 ---
 import Decoration from "@/components/Decoration.astro";
+
+const { t } = Astro.props;
 ---
 
 <section id="inicio" class="containerHero animate-on-scroll">
@@ -8,12 +10,12 @@ import Decoration from "@/components/Decoration.astro";
       <div class="decoration-wrapper anim-item">
         <Decoration />
       </div>
-      <h4 class="anim-item">¡Nos casamos!</h4>
-      <h1 class="anim-item">María y José</h1>
-      <h4 class="anim-item">18 de Octubre del 2025</h4>
+      <h4 class="anim-item">{t.subtitleTop}</h4>
+      <h1 class="anim-item">{t.title}</h1>
+      <h4 class="anim-item">{t.subtitleBottom}</h4>
       <span class="line-divider anim-item"></span>
       <div id="countdown-timer" class="countdown-timer anim-item">
-        00d : 00h : 00m : 00s
+        {t.countdown}
       </div>
       <span class="line-divider anim-item"></span>
       <div class="decoration-wrapper anim-item">
@@ -26,7 +28,7 @@ import Decoration from "@/components/Decoration.astro";
         width="1150"
         height="1517"
         src="/images/PNG/MariaJose.png"
-        alt="Foto de María y José"
+        alt={t.imageAlt}
       />
     </div>
   </article>

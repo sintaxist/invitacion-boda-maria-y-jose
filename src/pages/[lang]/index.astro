@@ -1,0 +1,49 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Hero from "@/sections/Hero.astro";
+import Historia from "@/sections/Historia.astro";
+import Detalles from "@/sections/Detalles.astro";
+import Galeria from "@/sections/Galeria.astro";
+import Registro from "@/sections/Registro.astro";
+import Hospedaje from "@/sections/Hospedaje.astro";
+import Footer from "@/components/Footer.astro";
+
+import { languages, defaultLang } from "@/locales";
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: "es" } },
+    { params: { lang: "en" } },
+  ];
+}
+
+const { lang } = Astro.params;
+const t = languages[lang] ?? languages[defaultLang];
+---
+
+<Layout>
+  <Header t={t.header} />
+  <main>
+    <div class="main-background">
+      <Hero t={t.hero} />
+      <Historia t={t.historia} />
+    </div>
+    <Detalles t={t.detalles} />
+    <div class="main-background">
+      <Galeria t={t.galeria} />
+      <Registro t={t.registro} />
+    </div>
+    <Hospedaje t={t} />
+    <Footer t={t} />
+  </main>
+</Layout>
+
+<style>
+  .main-background {
+    background-image: url("/images/PNG/background-texture.png");
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+</style>

@@ -1,0 +1,65 @@
+{
+  "header": {
+    "logoAlt": "Wedding logo",
+    "flowerAlt": "Decorative flower",
+    "sections": {
+      "inicio": "Home",
+      "historia": "Our story",
+      "detalles": "Wedding details",
+      "galeria": "Gallery",
+      "registro": "RSVP",
+      "hospedaje": "Nearby lodging"
+    },
+    "menu": {
+      "openAria": "Open menu",
+      "label": "Menu"
+    }
+  },
+  "hero": {
+    "subtitleTop": "We are getting married!",
+    "title": "Maria & Jose",
+    "subtitleBottom": "October 18th, 2025",
+    "countdown": "00d : 00h : 00m : 00s",
+    "imageAlt": "Photo of Maria & Jose"
+  },
+  "historia": {
+    "titulo": "Our Story",
+    "parrafo1": "A few years ago, in a place neither of us imagined, our eyes met for the first time. What began as a simple conversation turned into countless adventures, laughter, and shared dreams. Since that day, we have walked together, supporting each other at every step, learning, growing, and above all, loving each other more and more.",
+    "parrafo2": "Today, we want to celebrate the journey we've taken and take the next step in our story: joining our lives forever, surrounded by the people we love most."
+  },
+  "detalles": {
+    "titulo": "Wedding Details",
+    "cards": [
+      {
+        "title": "Ceremony",
+        "description": "We will join in marriage at the Parish of Santa Maria in Trastevere, Rome. A place full of history and meaning, where we will begin this new stage.",
+        "linkText": "View Location",
+        "href": "https://maps.app.goo.gl/u5m7yS11sopn1Xx69"
+      },
+      {
+        "title": "Reception",
+        "description": "After the ceremony, we will celebrate together at the Vatican. An evening to share laughter, toast and dance under a unique stage in the world.",
+        "linkText": "View Location",
+        "href": "https://maps.app.goo.gl/wzNCjDhbVs4EYnPx7"
+      },
+      {
+        "title": "Dress Code",
+        "description": "Formal attire. Men with dark suits, women with long dresses. Light and elegant tones are welcome for this special day.",
+        "linkText": "See ideas on Pinterest",
+        "href": "https://mx.pinterest.com/danielamaciaseventos/c%C3%B3digo-de-vestimenta-boda-sd/"
+      }
+    ]
+  },
+  "galeria": {
+    "titulo": "Photo Gallery",
+    "descripcion": "A glimpse at the moments that have brought us here. Photos full of love, adventures, and memories we want to share with you before our big day.",
+    "images": [
+      { "src": "/images/JPG/galeria-1.jpg", "alt": "Gallery photo of Maria & Jose 1" },
+      { "src": "/images/JPG/galeria-2.jpg", "alt": "Gallery photo of Maria & Jose 2" },
+      { "src": "/images/JPG/galeria-3.jpg", "alt": "Gallery photo of Maria & Jose 3" },
+      { "src": "/images/JPG/galeria-4.jpg", "alt": "Gallery photo of Maria & Jose 4" },
+      { "src": "/images/JPG/galeria-5.jpg", "alt": "Gallery photo of Maria & Jose 5" },
+      { "src": "/images/JPG/galeria-6.jpg", "alt": "Gallery photo of Maria & Jose 6" }
+    ]
+  }
+}

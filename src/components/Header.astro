@@ -1,13 +1,19 @@
 ---
+import LangSwitcher from "@/components/LangSwitcher.astro";
 
+// Recibimos el objeto de traducciones
+const { t } = Astro.props;
+
+// Creamos las secciones desde las traducciones
 const sections = [
-  { id: "inicio", text: "Inicio" },
-  { id: "historia", text: "Nuestra historia" },
-  { id: "detalles", text: "Detalles de la boda" },
-  { id: "galeria", text: "Galería" },
-  { id: "registro", text: "Confirma tu asistencia" },
-  { id: "hospedaje", text: "Hospedaje cercano" },
+  { id: "inicio", text: t.sections.inicio },
+  { id: "historia", text: t.sections.historia },
+  { id: "detalles", text: t.sections.detalles },
+  { id: "galeria", text: t.sections.galeria },
+  { id: "registro", text: t.sections.registro },
+  { id: "hospedaje", text: t.sections.hospedaje },
 ];
+
 ---
 
 <header class="header">
@@ -16,14 +22,14 @@ const sections = [
       width="60"
       height="auto"
       src="/images/SVG/LogoHeader.svg"
-      alt="Logo de la boda"
+      alt={t.logoAlt}
     />
     <img
       class="logo-flower"
       width="60"
       height="auto"
       src="/images/SVG/Flower.svg"
-      alt="Flor decorativa"
+      alt={t.flowerAlt}
     />
   </a>
 
@@ -41,9 +47,11 @@ const sections = [
       <div class="line"></div>
     </ul>
 
-    <button class="menu-trigger" aria-label="Abrir menú">
+    <LangSwitcher />
+
+    <button class="menu-trigger" aria-label={t.menu.openAria}>
       <div class="bars"></div>
-      <span>Menú</span>
+      <span>{t.menu.label}</span>
     </button>
   </nav>
 

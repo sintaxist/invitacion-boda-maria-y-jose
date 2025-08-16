@@ -1,5 +1,7 @@
 ---
 import Title from "@/components/Title.astro";
+
+const { t } = Astro.props;
 ---
 
 <section id="historia" class="container animate-on-scroll">
@@ -9,14 +11,10 @@ import Title from "@/components/Title.astro";
     class="decoration-aside anim-item" 
   />
 
-   <Title text="Nuestra Historia" color="green" class="anim-item" />
+  <Title text={t.titulo} color="green" class="anim-item" />
 
-  <p class="anim-item">
-    Hace algunos años, en un lugar que ninguno de los dos imaginaba, nuestras miradas se cruzaron por primera vez. Lo que comenzó como una simple conversación se convirtió en incontables aventuras, risas y sueños compartidos. Desde aquel día, hemos caminado juntos, apoyándonos en cada paso, aprendiendo, creciendo y, sobre todo, amándonos cada vez más.
-  </p>
-  <p class="anim-item">
-    Hoy, queremos celebrar ese camino que hemos recorrido y dar el siguiente paso en nuestra historia: unir nuestras vidas para siempre, rodeados de las personas que más queremos.
-  </p>
+  <p class="anim-item">{t.parrafo1}</p>
+  <p class="anim-item">{t.parrafo2}</p>
 
   <img 
     src="/images/SVG/aside-decoration.svg" 

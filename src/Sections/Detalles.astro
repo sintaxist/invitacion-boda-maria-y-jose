@@ -2,37 +2,14 @@
 import Title from "@/components/Title.astro";
 import Card from "@/components/Card.astro";
 
-// Datos de las tarjetas. Cambia los href a tus URLs reales.
-const cardsDetalles = [
-  {
-    title: "Ceremonia",
-    description:
-      "Nos uniremos en matrimonio en la Parroquia de Santa María in Trastevere, Roma. Un lugar lleno de historia y significado, donde iniciaremos esta nueva etapa.",
-    linkText: "Ver Ubicación",
-    href: "https://maps.app.goo.gl/u5m7yS11sopn1Xx69",
-  },
-  {
-    title: "Recepción",
-    description:
-      "Después de la ceremonia, celebraremos juntos en el Vaticano. Una noche para compartir risas, brindar y bailar bajo un escenario único en el mundo.",
-    linkText: "Ver Ubicación",
-    href: "https://maps.app.goo.gl/wzNCjDhbVs4EYnPx7",
-  },
-  {
-    title: "Código de Vestimenta",
-    description:
-      "Etiqueta formal. Hombres con traje oscuro, mujeres con vestido largo. Los tonos claros y elegantes son bienvenidos para este día especial.",
-    linkText: "Ver ideas en Pinterest",
-    href: "https://mx.pinterest.com/danielamaciaseventos/c%C3%B3digo-de-vestimenta-boda-sd/",
-  },
-];
+const { t } = Astro.props;
 ---
 
 <section id="detalles" class="container container-before-gradient container-after-gradient animate-on-scroll">
-  <Title text="Detalles de la boda" color="brown" class="anim-item" />
+  <Title text={t.titulo} color="brown" class="anim-item" />
 
   <div class="cards-container">
-    {cardsDetalles.map((card, index) => (
+    {t.cards.map((card, index) => (
       <Card
         title={card.title}
         description={card.description}
@@ -45,7 +22,6 @@ const cardsDetalles = [
       />
     ))}
   </div>
-</section>
 
 <style>
 

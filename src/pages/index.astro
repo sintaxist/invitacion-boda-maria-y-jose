@@ -1,43 +1,22 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
+import { defaultLang } from "@/locales";
 
-import Hero from "@/sections/Hero.astro";
-import Historia from "@/sections/Historia.astro";
-import Detalles from "@/sections/Detalles.astro";
-import Galeria from "@/sections/Galeria.astro";
-import Hospedaje from "@/sections/Hospedaje.astro";
-import Registro from "@/sections/Registro.astro";
-import Footer from "@/components/Footer.astro";
+const target = `/${defaultLang}/`;
+
+// Redirección nativa de Astro (dev, SSR y adaptadores que la soportan)
+return Astro.redirect(target);
 ---
 
-<Layout>
-  <Header />
-
-  <main>
-    <div class="main-background">
-      <Hero />
-      <Historia />
-    </div>
-
-    <Detalles />
-
-    <div class="main-background">
-      <Galeria />
-      <Registro />
-    </div>
-
-    <Hospedaje />
-
-    <Footer />
-  </main>
-</Layout>
-
-<style>
-  .main-background {
-    background-image: url("/images/PNG/background-texture.png");
-    background-position: top center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-</style>
+<!-- Fallback para hostings estáticos que no soportan la redirección anterior -->
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <script>window.location.replace("<?ts target ?>");</script>
+    <title>Redirigiendo…</title>
+  </head>
+  <body>
+    <a href={target}>Redirigiendo a {target}…</a>
+  </body>
+</html>

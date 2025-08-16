@@ -1,35 +1,20 @@
 ---
 import Title from "@/components/Title.astro";
 
-// 1. Define aquí las rutas a tus imágenes. Deben estar en la carpeta `public`.
-const galleryImages = [
-  "/images/JPG/galeria-1.jpg",
-  "/images/JPG/galeria-2.jpg",
-  "/images/JPG/galeria-3.jpg",
-  "/images/JPG/galeria-4.jpg",
-  "/images/JPG/galeria-5.jpg",
-  "/images/JPG/galeria-6.jpg",
-];
+const { t } = Astro.props;
+const galleryImages = t.images.map((img) => img.src);
 ---
 
 <section id="galeria" class="container animate-on-scroll">
-  <Title text="Galería de Fotos" color="green" class="anim-item" />
+  <Title text={t.titulo} color="green" class="anim-item" />
 
-  <p class="anim-item">
-    Un vistazo a los momentos que nos han traído hasta aquí. Fotos llenas de
-    amor, aventuras y recuerdos que queremos compartir contigo antes de nuestro
-    gran día.
-  </p>
+  <p class="anim-item">{t.descripcion}</p>
 
   <div class="gallery-grid anim-item">
     {
-      galleryImages.map((imgSrc) => (
-        <a href={imgSrc} class="gallery-item anim-item">
-          <img
-            src={imgSrc}
-            alt="Foto de la galería de María y José"
-            loading="lazy"
-          />
+      t.images.map((img) => (
+        <a href={img.src} class="gallery-item anim-item">
+          <img src={img.src} alt={img.alt} loading="lazy" />
           <div class="overlay">
             <svg
               width="48"
@@ -72,7 +57,6 @@ const galleryImages = [
 </section>
 
 <style>
-
   p {
     text-align: center;
     font-size: var(--font-4);
@@ -247,17 +231,28 @@ const galleryImages = [
 
   /* --- ANIMACIONES --- */
 
-  :global(.animate) .gallery-item.anim-item:nth-child(1) { animation-delay: 0.5s; }
-  :global(.animate) .gallery-item.anim-item:nth-child(2) { animation-delay: 0.6s; }
-  :global(.animate) .gallery-item.anim-item:nth-child(3) { animation-delay: 0.7s; }
-  :global(.animate) .gallery-item.anim-item:nth-child(4) { animation-delay: 0.8s; }
-  :global(.animate) .gallery-item.anim-item:nth-child(5) { animation-delay: 0.9s; }
-  :global(.animate) .gallery-item.anim-item:nth-child(6) { animation-delay: 1.0s; }
+  :global(.animate) .gallery-item.anim-item:nth-child(1) {
+    animation-delay: 0.5s;
+  }
+  :global(.animate) .gallery-item.anim-item:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+  :global(.animate) .gallery-item.anim-item:nth-child(3) {
+    animation-delay: 0.7s;
+  }
+  :global(.animate) .gallery-item.anim-item:nth-child(4) {
+    animation-delay: 0.8s;
+  }
+  :global(.animate) .gallery-item.anim-item:nth-child(5) {
+    animation-delay: 0.9s;
+  }
+  :global(.animate) .gallery-item.anim-item:nth-child(6) {
+    animation-delay: 1s;
+  }
 
   /* --- MEDIA QUERIES --- */
 
   @media (max-width: 900px) {
-
     .gallery-grid {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(5, 1fr);
@@ -308,7 +303,12 @@ const galleryImages = [
   }
 </style>
 
-<script define:vars={{ galleryImages }}>
+<script type="module" client:load>
+  // galleryImages ya existe porque lo definimos arriba como const
+  const galleryImages = [...document.querySelectorAll(".gallery-item")].map(
+    (a) => a.getAttribute("href")
+  );
+
   function setupGallery() {
     const galleryItems = document.querySelectorAll(".gallery-item");
     const lightbox = document.getElementById("lightbox");
@@ -352,14 +352,11 @@ const galleryImages = [
     }
 
     function showPrevImage() {
-      currentIndex =
-        (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
       showImage(currentIndex);
     }
 
-    galleryItems.forEach((item) =>
-      item.addEventListener("click", openLightbox)
-    );
+    galleryItems.forEach((item) => item.addEventListener("click", openLightbox));
     closeBtn?.addEventListener("click", closeLightbox);
     lightboxImage?.addEventListener("click", closeLightbox);
     prevBtn?.addEventListener("click", showPrevImage);
@@ -372,5 +369,7 @@ const galleryImages = [
       if (e.key === "Escape") closeLightbox();
     });
   }
-  document.addEventListener("DOMContentLoaded", setupGallery);
+
+  setupGallery();
 </script>
+

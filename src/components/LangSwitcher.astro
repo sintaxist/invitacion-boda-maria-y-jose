@@ -1,0 +1,37 @@
+---
+import { languages } from "@/locales";
+
+const { lang } = Astro.params; // idioma actual
+const availableLangs = Object.keys(languages); // ["es", "en"]
+
+// idioma alternativo (si solo tienes 2 idiomas)
+const altLang = availableLangs.find((l) => l !== lang) ?? "es";
+
+// reconstruimos la URL actual pero con el otro idioma
+const currentPath = Astro.url.pathname; // ej: /es/detalles
+const newPath = currentPath.replace(`/${lang}`, `/${altLang}`);
+---
+
+<div class="lang-switcher">
+  <a href={newPath} class="lang-link">
+    {altLang.toUpperCase()}
+  </a>
+</div>
+
+<style>
+  .lang-switcher {
+    display: inline-block;
+    margin-left: 1rem;
+  }
+
+  .lang-link {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--color-primary, #6630ff);
+    transition: opacity 0.2s ease;
+  }
+
+  .lang-link:hover {
+    opacity: 0.7;
+  }
+</style>
