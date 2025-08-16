@@ -54,12 +54,95 @@
     "titulo": "Photo Gallery",
     "descripcion": "A glimpse at the moments that have brought us here. Photos full of love, adventures, and memories we want to share with you before our big day.",
     "images": [
-      { "src": "/images/JPG/galeria-1.jpg", "alt": "Gallery photo of Maria & Jose 1" },
-      { "src": "/images/JPG/galeria-2.jpg", "alt": "Gallery photo of Maria & Jose 2" },
-      { "src": "/images/JPG/galeria-3.jpg", "alt": "Gallery photo of Maria & Jose 3" },
-      { "src": "/images/JPG/galeria-4.jpg", "alt": "Gallery photo of Maria & Jose 4" },
-      { "src": "/images/JPG/galeria-5.jpg", "alt": "Gallery photo of Maria & Jose 5" },
-      { "src": "/images/JPG/galeria-6.jpg", "alt": "Gallery photo of Maria & Jose 6" }
+      {
+        "src": "/images/JPG/galeria-1.jpg",
+        "alt": "Gallery photo of Maria & Jose 1"
+      },
+      {
+        "src": "/images/JPG/galeria-2.jpg",
+        "alt": "Gallery photo of Maria & Jose 2"
+      },
+      {
+        "src": "/images/JPG/galeria-3.jpg",
+        "alt": "Gallery photo of Maria & Jose 3"
+      },
+      {
+        "src": "/images/JPG/galeria-4.jpg",
+        "alt": "Gallery photo of Maria & Jose 4"
+      },
+      {
+        "src": "/images/JPG/galeria-5.jpg",
+        "alt": "Gallery photo of Maria & Jose 5"
+      },
+      {
+        "src": "/images/JPG/galeria-6.jpg",
+        "alt": "Gallery photo of Maria & Jose 6"
+      }
     ]
+  },
+  "registro": {
+    "heading": "Let's share this special moment",
+    "contactHeading": "Contact Us",
+    "contactGroom": "Contact the Groom",
+    "contactBride": "Contact the Bride",
+    "socialText": "You can also find us on:",
+    "social": {
+      "facebook": "https://facebook.com/...",
+      "instagram": "https://instagram.com/...",
+      "mail": "mailto:...",
+      "tiktok": "https://tiktok.com/..."
+    },
+    "form": {
+      "heading": "Confirm your attendance",
+      "description": "It's very important to us that you commit...",
+      "attendanceQuestion": "Will you attend the party?",
+      "yes": "Yes 🥳",
+      "no": "No 😓",
+      "nameLabel": "Full Name",
+      "nameError": "Please enter your name.",
+      "guestLabel": "Number of guests",
+      "guestError": "Please select a number.",
+      "messageLabel": "Some words you'd like to share",
+      "submitText": "Send Confirmation",
+      "successHeading": "Thanks for confirming!",
+      "successMessage": "Your response has been registered..."
+    }
+  },
+  "hospedaje": {
+    "heading": "Nearby Lodging",
+    "description": "For your convenience, we have selected some lodging options close to the event venue with different price ranges.",
+    "hotels": [
+      {
+        "title": "Hotel de la Paz",
+        "description": "A boutique hotel with historical charm and spectacular views, perfect for a memorable stay.",
+        "linkText": "See on Booking.com",
+        "href": "#",
+        "rating": 5,
+        "distance": "5 km from the event",
+        "priceRange": "250 - 400 €"
+      },
+      {
+        "title": "Posada Santa Fe",
+        "description": "Enjoy traditional hospitality in a relaxed and cozy atmosphere. Perfect for families.",
+        "linkText": "Book Now",
+        "href": "#",
+        "rating": 4,
+        "distance": "8 km from the event",
+        "priceRange": "150 - 220 €"
+      },
+      {
+        "title": "Casa Florencia",
+        "description": "A modern and comfortable option with all amenities. Excellent value for money.",
+        "linkText": "Visit Website",
+        "href": "#",
+        "rating": 4,
+        "distance": "12 km from the event",
+        "priceRange": "100 - 180 €"
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "Maria & José · 2025",
+    "quote": "This is just the beginning of our most beautiful adventure."
   }
 }

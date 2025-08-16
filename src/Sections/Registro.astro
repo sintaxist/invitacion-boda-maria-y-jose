@@ -8,41 +8,39 @@ import Facebook from '@/icons/Facebook.astro';
 import Instagram from '@/icons/Instagram.astro';
 import Mail from '@/icons/Mail.astro';
 import TikTok from '@/icons/TikTok.astro';
+
+const { t } = Astro.props;
 ---
 
 <section id="registro" class="container animate-on-scroll">
-  <Title
-    text="Compartamos este momento tan especial"
-    color="brown"
-    class="anim-item"
-  />
+  <Title text={t.heading} color="brown" class="anim-item" />
 
   <div class="content-wrapper">
-    <RsvpForm />
+    <RsvpForm t={t.form} />
 
     <div class="contact-info anim-item">
-      <Title text="Contáctanos" color="brown" />
+      <Title text={t.contactHeading} color="brown" />
       <div class="buttons-wrapper">
         <Button
-          text="Contactar al novio"
+          text={t.contactGroom}
           href="https://wa.link/fdo4fu"
           color="brown"
           variant="primary"
         />
         <Button
-          text="Contactar a la novia"
+          text={t.contactBride}
           href="https://wa.link/fdo4fu"
           color="brown"
           variant="secondary"
         />
       </div>
       <div class="social-media">
-        <p>También puedes encontrarnos en:</p>
+        <p>{t.socialText}</p>
         <div class="social-icons">
-          <a href="https://www.linkedin.com/in/alejandro-canek?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" aria-label="Facebook" target="_blank"><Facebook /></a>
-          <a href="https://www.instagram.com/alejandrocanek?igsh=MXB4eWxpa3BrdHI2NQ==" aria-label="Instagram" target="_blank"><Instagram /></a>
-          <a href="mailto:alejandro.canek.dev@gmail.com?subject=Boda%20Mar%C3%ADa%20y%20Jos%C3%A9&body=Hola%2C%20quiero%20hablar%20sobre%20la%20boda%20%F0%9F%A4%B5%F0%9F%8F%BC%E2%80%8D%E2%99%82%EF%B8%8F%F0%9F%91%B0%F0%9F%8F%BC" aria-label="Correo electrónico" target="_blank"><Mail /></a>
-          <a href="https://www.tiktok.com/es/" target="_blank" rel="noopener noreferrer" aria-label="Tik Tok"><TikTok className="icon"/></a>
+          <a href={t.social.facebook} aria-label="Facebook" target="_blank"><Facebook /></a>
+          <a href={t.social.instagram} aria-label="Instagram" target="_blank"><Instagram /></a>
+          <a href={t.social.mail} aria-label="Correo electrónico" target="_blank"><Mail /></a>
+          <a href={t.social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok"><TikTok className="icon"/></a>
         </div>
       </div>
     </div>

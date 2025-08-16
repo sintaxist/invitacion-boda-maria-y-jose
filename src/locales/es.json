@@ -54,12 +54,95 @@
     "titulo": "Galería de Fotos",
     "descripcion": "Un vistazo a los momentos que nos han traído hasta aquí. Fotos llenas de amor, aventuras y recuerdos que queremos compartir contigo antes de nuestro gran día.",
     "images": [
-      { "src": "/images/JPG/galeria-1.jpg", "alt": "Foto de la galería de María y José 1" },
-      { "src": "/images/JPG/galeria-2.jpg", "alt": "Foto de la galería de María y José 2" },
-      { "src": "/images/JPG/galeria-3.jpg", "alt": "Foto de la galería de María y José 3" },
-      { "src": "/images/JPG/galeria-4.jpg", "alt": "Foto de la galería de María y José 4" },
-      { "src": "/images/JPG/galeria-5.jpg", "alt": "Foto de la galería de María y José 5" },
-      { "src": "/images/JPG/galeria-6.jpg", "alt": "Foto de la galería de María y José 6" }
+      {
+        "src": "/images/JPG/galeria-1.jpg",
+        "alt": "Foto de la galería de María y José 1"
+      },
+      {
+        "src": "/images/JPG/galeria-2.jpg",
+        "alt": "Foto de la galería de María y José 2"
+      },
+      {
+        "src": "/images/JPG/galeria-3.jpg",
+        "alt": "Foto de la galería de María y José 3"
+      },
+      {
+        "src": "/images/JPG/galeria-4.jpg",
+        "alt": "Foto de la galería de María y José 4"
+      },
+      {
+        "src": "/images/JPG/galeria-5.jpg",
+        "alt": "Foto de la galería de María y José 5"
+      },
+      {
+        "src": "/images/JPG/galeria-6.jpg",
+        "alt": "Foto de la galería de María y José 6"
+      }
     ]
+  },
+  "registro": {
+    "heading": "Compartamos este momento tan especial",
+    "contactHeading": "Contáctanos",
+    "contactGroom": "Contactar al novio",
+    "contactBride": "Contactar a la novia",
+    "socialText": "También puedes encontrarnos en:",
+    "social": {
+      "facebook": "https://facebook.com/...",
+      "instagram": "https://instagram.com/...",
+      "mail": "mailto:...",
+      "tiktok": "https://tiktok.com/..."
+    },
+    "form": {
+      "heading": "Confirma tu asistencia",
+      "description": "Para nosotros es muy importante el compromiso...",
+      "attendanceQuestion": "¿Asistirás a la fiesta?",
+      "yes": "Sí 🥳",
+      "no": "No 😓",
+      "nameLabel": "Nombre Completo",
+      "nameError": "Por favor, ingresa tu nombre.",
+      "guestLabel": "Número de acompañantes",
+      "guestError": "Por favor, selecciona un número.",
+      "messageLabel": "Algunas palabras que nos quieras dedicar",
+      "submitText": "Enviar Confirmación",
+      "successHeading": "¡Gracias por confirmar!",
+      "successMessage": "Tu respuesta ha sido registrada..."
+    }
+  },
+  "hospedaje": {
+    "heading": "Hospedaje Cercano",
+    "description": "Para tu comodidad, hemos seleccionado algunas opciones de hospedaje cercanas al lugar del evento con diferentes rangos de precios.",
+    "hotels": [
+      {
+        "title": "Hotel de la Paz",
+        "description": "Un hotel boutique con encanto histórico y vistas espectaculares, ideal para una estancia memorable.",
+        "linkText": "Ver en Booking.com",
+        "href": "#",
+        "rating": 5,
+        "distance": "A 5 km del evento",
+        "priceRange": "250 - 400 €"
+      },
+      {
+        "title": "Posada Santa Fe",
+        "description": "Disfruta de la hospitalidad tradicional en un ambiente relajado y acogedor. Perfecto para familias.",
+        "linkText": "Reservar ahora",
+        "href": "#",
+        "rating": 4,
+        "distance": "A 8 km del evento",
+        "priceRange": "150 - 220 €"
+      },
+      {
+        "title": "Casa Florencia",
+        "description": "Una opción moderna y cómoda con todas las amenidades. Excelente relación calidad-precio.",
+        "linkText": "Ver sitio web",
+        "href": "#",
+        "rating": 4,
+        "distance": "A 12 km del evento",
+        "priceRange": "100 - 180 €"
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "María y José · 2025",
+    "quote": "Este es solo el comienzo de nuestra aventura más hermosa."
   }
 }

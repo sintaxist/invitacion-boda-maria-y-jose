@@ -5,11 +5,15 @@ import Card from "@/components/Card.astro";
 const { t } = Astro.props;
 ---
 
-<section id="detalles" class="container container-before-gradient container-after-gradient animate-on-scroll">
+<section
+  id="detalles"
+  class="container container-before-gradient container-after-gradient animate-on-scroll"
+>
   <Title text={t.titulo} color="brown" class="anim-item" />
 
   <div class="cards-container">
-    {t.cards.map((card, index) => (
+  {
+    t.cards.map((card: any, index: number) => (
       <Card
         title={card.title}
         description={card.description}
@@ -20,28 +24,27 @@ const { t } = Astro.props;
         class="anim-item"
         animationDelayIndex={index}
       />
-    ))}
+    ))
+  }
   </div>
 
-<style>
-
-  .cards-container {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    width: 100%;
-    max-width: 1200px;
-    z-index: 2;
-  }
-
-
-  /* --- MEDIA QUERIES --- */
-
-  @media (max-width: 900px) {
+  <style>
     .cards-container {
-      gap: 1.7rem;
-      flex-wrap: wrap;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+      z-index: 2;
     }
 
-  }
-</style>
+    /* --- MEDIA QUERIES --- */
+
+    @media (max-width: 900px) {
+      .cards-container {
+        gap: 1.7rem;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</section>

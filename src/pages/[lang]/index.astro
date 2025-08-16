@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 }
 
 const { lang } = Astro.params;
-const t = languages[lang] ?? languages[defaultLang];
+const t = languages[lang as keyof typeof languages] ?? languages[defaultLang];
 ---
 
 <Layout>
@@ -34,8 +34,8 @@ const t = languages[lang] ?? languages[defaultLang];
       <Galeria t={t.galeria} />
       <Registro t={t.registro} />
     </div>
-    <Hospedaje t={t} />
-    <Footer t={t} />
+    <Hospedaje t={t.hospedaje} />
+    <Footer t={t.footer} />
   </main>
 </Layout>
 

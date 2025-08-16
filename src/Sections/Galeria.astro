@@ -2,7 +2,6 @@
 import Title from "@/components/Title.astro";
 
 const { t } = Astro.props;
-const galleryImages = t.images.map((img) => img.src);
 ---
 
 <section id="galeria" class="container animate-on-scroll">
@@ -12,7 +11,7 @@ const galleryImages = t.images.map((img) => img.src);
 
   <div class="gallery-grid anim-item">
     {
-      t.images.map((img) => (
+      t.images.map((img: any) => (
         <a href={img.src} class="gallery-item anim-item">
           <img src={img.src} alt={img.alt} loading="lazy" />
           <div class="overlay">
@@ -303,8 +302,7 @@ const galleryImages = t.images.map((img) => img.src);
   }
 </style>
 
-<script type="module" client:load>
-  // galleryImages ya existe porque lo definimos arriba como const
+<script is:inline>
   const galleryImages = [...document.querySelectorAll(".gallery-item")].map(
     (a) => a.getAttribute("href")
   );

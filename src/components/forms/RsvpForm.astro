@@ -1,53 +1,43 @@
 ---
 import NumberStepper from "@/components/forms/NumberStepper.astro";
 import Button from "@/components/Button.astro";
+
+const { t } = Astro.props;
 ---
 
 <div class="form-wrapper anim-item">
-  <h2>Confirma tu asistencia</h2>
-  <p>
-    Para nosotros es muy importante el compromiso. Completa el siguiente
-    formulario para confirmar o rechazar tu asistencia.
-  </p>
+  <h2>{t.heading}</h2>
+  <p>{t.description}</p>
 
   <form id="rsvp-form" class="form">
-    <p class="toogle-text">¿Asistirás a la fiesta?</p>
+    <p class="toogle-text">{t.attendanceQuestion}</p>
     <div class="toggle-group">
       <div class="toggle">
-        <span>No 😓</span>
-        <input
-          type="checkbox"
-          id="attending-toggle"
-          class="ios-toggle"
-          checked
-        />
-        <span>Sí 🥳</span>
+        <span>{t.no}</span>
+        <input type="checkbox" id="attending-toggle" class="ios-toggle" checked />
+        <span>{t.yes}</span>
       </div>
     </div>
 
     <div class="input-group">
       <input type="text" id="name" name="name" required placeholder=" " />
-      <label for="name"
-        >Nombre Completo<span class="required-asterisk">*</span></label
-      >
-      <span class="error-message">Por favor, ingresa tu nombre.</span>
+      <label for="name">{t.nameLabel}<span class="required-asterisk">*</span></label>
+      <span class="error-message">{t.nameError}</span>
     </div>
 
     <div class="input-group">
-      <label for="guest-select" class="static-label"
-         style="margin-bottom: 8px; display: block;">Número de acompañantes<span class="required-asterisk">*</span></label
-      >
+      <label for="guest-select" class="static-label">{t.guestLabel}<span class="required-asterisk">*</span></label>
       <NumberStepper />
-      <span class="error-message">Por favor, selecciona un número.</span>
+      <span class="error-message">{t.guestError}</span>
     </div>
 
     <div class="input-group">
       <textarea id="message" name="message" rows="4" placeholder=" "></textarea>
-      <label for="message">Algunas palabras que nos quieras dedicar</label>
+      <label for="message">{t.messageLabel}</label>
     </div>
 
     <Button
-      text="Enviar Confirmación"
+      text={t.submitText}
       type="submit"
       color="brown"
       variant="primary"
@@ -59,11 +49,8 @@ import Button from "@/components/Button.astro";
 <div id="success-modal" class="modal-overlay">
   <div class="modal-content">
     <button id="close-modal-btn" class="close-btn">&times;</button>
-    <h3>¡Gracias por confirmar!</h3>
-    <p>
-      Tu respuesta ha sido registrada. Estamos muy emocionados de celebrar este
-      día contigo.
-    </p>
+    <h3>{t.successHeading}</h3>
+    <p>{t.successMessage}</p>
   </div>
 </div>
 

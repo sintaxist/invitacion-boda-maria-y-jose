@@ -2,25 +2,24 @@
 import Facebook from "@/icons/Facebook.astro";
 import Instagram from "@/icons/Instagram.astro";
 import Mail from "@/icons/Mail.astro";
-import TikTok from "@/icons/TikTok.astro";
+import Tiktok from "@/icons/Tiktok.astro";
+
+const { t } = Astro.props;
 ---
 
 <div id="footer-container" class="container animate-on-scroll">
   <footer class="footer-layout anim-item">
-
-    <p>María y José · 2025</p>
+    <p>{t.copyright}</p>
     <hr />
     <div class="credits-socials">
       <p>
-        "Este es solo el comienzo de nuestra aventura más hermosa."&nbsp;&nbsp;<span
-          class="heart">❤️</span
-        >
+        "{t.quote}"&nbsp;&nbsp;<span class="heart">❤️</span>
       </p>
       <div class="social-icons">
-        <a href="https://www.linkedin.com/in/alejandro-canek?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" aria-label="Facebook"><Facebook /></a>
-        <a href="https://www.instagram.com/alejandrocanek?igsh=MXB4eWxpa3BrdHI2NQ==" aria-label="Instagram"><Instagram /></a>
-        <a href="mailto:alejandro.canek.dev@gmail.com?subject=Boda%20Mar%C3%ADa%20y%20Jos%C3%A9&body=Hola%2C%20quiero%20hablar%20sobre%20la%20boda%20%F0%9F%A4%B5%F0%9F%8F%BC%E2%80%8D%E2%99%82%EF%B8%8F%F0%9F%91%B0%F0%9F%8F%BC" aria-label="Correo"><Mail /></a>
-        <a href="https://www.tiktok.com/es/" aria-label="TikTok"><TikTok /></a>
+        <a href="https://www.linkedin.com/in/alejandro-canek?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" aria-label="Facebook" target="_blank"><Facebook /></a>
+        <a href="https://www.instagram.com/alejandrocanek?igsh=MXB4eWxpa3BrdHI2NQ==" aria-label="Instagram" target="_blank"><Instagram /></a>
+        <a href="mailto:alejandro.canek.dev@gmail.com?subject=Boda%20Mar%C3%ADa%20y%20Jos%C3%A9&body=Hola%2C%20quiero%20hablar%20sobre%20la%20boda%20%F0%9F%A4%B5%F0%9F%8F%BC%E2%80%8D%E2%99%82%EF%B8%8F%F0%9F%91%B0%F0%9F%8F%BC" aria-label="Correo" target="_blank"><Mail /></a>
+        <a href="https://www.tiktok.com/es/" aria-label="TikTok" target="_blank"><Tiktok /></a>
       </div>
     </div>
   </footer>
