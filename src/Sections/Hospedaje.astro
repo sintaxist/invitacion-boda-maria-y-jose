@@ -1,0 +1,113 @@
+---
+import Title from '@/components/Title.astro';
+import Card from '@/components/Card.astro';
+
+const lodgingData = [
+  {
+    title: "Hotel de la Paz",
+    description: "Un hotel boutique con encanto histórico y vistas espectaculares, ideal para una estancia memorable.",
+    linkText: "Ver en Booking.com",
+    href: "#",
+    rating: 5,
+    distance: "A 5 km del evento",
+    priceRange: "250 - 400 €"
+  },
+  {
+    title: "Posada Santa Fe",
+    description: "Disfruta de la hospitalidad tradicional en un ambiente relajado y acogedor. Perfecto para familias.",
+    linkText: "Reservar ahora",
+    href: "#",
+    rating: 4,
+    distance: "A 8 km del evento",
+    priceRange: "150 - 220 €"
+  },
+  {
+    title: "Casa Florencia",
+    description: "Una opción moderna y cómoda con todas las amenidades. Excelente relación calidad-precio.",
+    linkText: "Ver sitio web",
+    href: "#",
+    rating: 4,
+    distance: "A 12 km del evento",
+    priceRange: "100 - 180 €"
+  }
+];
+---
+<section id="hospedaje" class="container animate-on-scroll">
+  <Title text="Hospedaje Cercano" color="green" class="anim-item" />
+  <p class="anim-item">
+    Para tu comodidad, hemos seleccionado algunas opciones de hospedaje cercanas al lugar del evento con diferentes rangos de precios.
+  </p>
+  <div class="cards-container">
+    {lodgingData.map(hotel => (
+      <Card
+        title={hotel.title}
+        description={hotel.description}
+        linkText={hotel.linkText}
+        href={hotel.href}
+        type="hospedaje"
+        color="green"
+        rating={hotel.rating}
+        distance={hotel.distance}
+        priceRange={hotel.priceRange}
+        class="anim-item"
+      />
+    ))}
+  </div>
+</section>
+
+<style>
+  /* Usamos los mismos estilos de contenedor y layout que en Detalles */
+  .container {
+    padding: 5rem 6%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    position: relative;
+  }
+
+  .container:before {
+    content: "";
+    position: absolute;
+    top: -3%;
+    left: 0;
+    width: 100%;
+    height: 6%;
+    background: linear-gradient(180deg,rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  p {
+    text-align: center;
+    font-size: var(--font-4);
+    line-height: 1.6;
+    max-width: 800px;
+    color: var(--color-gray);
+  }
+
+  .cards-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  /* --- ANIMACIONES --- */
+
+  :global(.animate) .container > .anim-item:nth-child(1) { animation-delay: 0.1s; }
+  :global(.animate) .container > .anim-item:nth-child(2) { animation-delay: 0.3s; }
+  :global(.animate) .cards-container .anim-item:nth-child(1) { animation-delay: 0.5s; }
+  :global(.animate) .cards-container .anim-item:nth-child(2) { animation-delay: 0.7s; }
+  :global(.animate) .cards-container .anim-item:nth-child(3) { animation-delay: 0.9s; }
+
+  /* --- MEDIA QUERIES --- */
+
+  @media (max-width: 900px) {
+    .container {
+        padding: 3rem 6%;
+        gap: 1.5rem;
+    }
+    .cards-container { flex-direction: column; }
+    p { font-size: var(--font-5);
+  }
+</style>

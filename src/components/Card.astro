@@ -1,0 +1,192 @@
+---
+import ArrowLlink from "@/icons/ArrowLlink.astro";
+import Star from "@/icons/Star.astro";
+
+// Las props no cambian
+interface Props {
+  title: string; description: string; linkText: string; href: string;
+  type?: 'detalles' | 'hospedaje'; color?: 'brown' | 'green';
+  rating?: number; distance?: string; priceRange?: string;
+  class?: string;
+}
+const {
+  title, description, linkText, href,
+  type = 'detalles', color = 'brown',
+  rating = 0, distance, priceRange,
+  class: className,
+} = Astro.props;
+const stars = Array(5).fill(null);
+---
+
+<a href={href} target="_blank" class:list={["card", `is-${color}`, className]}>
+  <div class="card-header">
+    <h3>{title}</h3>
+      {type === 'hospedaje' ? (
+        <div class="star-rating">
+          {stars.map((_, index) => <Star filled={index < rating} />)}
+        </div>
+      )
+      :
+      (
+        <span class="card-divider"></span>
+      )}
+  </div>
+  
+  {type === 'hospedaje' && (
+    <div class="lodging-info">
+      <div class="extra-details">
+        {distance && <span>📍 {distance}</span>}
+      </div>
+      {priceRange && <span class="price-range">{priceRange}</span>}
+    </div>
+  )}
+
+  <p>{description}</p>
+  
+  <span class="link-text">
+    {linkText}
+    <ArrowLlink />
+  </span>
+</a>
+
+<style>
+  .card {
+    background-color: var(--color-white);
+    border-radius: 40px;
+    box-shadow:
+      41px 161px 46px 0 rgba(5, 5, 5, 0),
+      26px 103px 42px 0 rgba(5, 5, 5, 0.01),
+      15px 58px 36px 0 rgba(5, 5, 5, 0.03),
+      7px 26px 27px 0 rgba(5, 5, 5, 0.04),
+      2px 6px 15px 0 rgba(5, 5, 5, 0.05);
+    border-radius: 40px;
+    padding: 2.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-decoration: none;
+    color: var(--color-gray);
+    transition: background 0.3s ease;
+  }
+
+  .card:hover {
+    background-color: #fffaf5; /* Mantenemos el hover sencillo */
+  }
+
+  .card.is-green:hover {
+    background-color: #f0f3e4;
+  }
+
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+  }
+
+  h3 {
+    font-family: var(--family-body);
+    font-size: var(--font-3);
+    font-weight: bold;
+    color: var(--color-brown);
+    text-align: center;
+  }
+
+  .card-divider {
+    width: 80%;
+    display: block;
+    height: 2px;
+    background-color: var(--color-brown);
+    opacity: 0.5;
+  }
+
+  p {
+    font-size: var(--font-5);
+    line-height: 1.6;
+    flex-grow: 1;
+    text-align: center;
+  }
+
+  .link-text {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--color-brown);
+    font-size: var(--font-5);
+    position: relative;
+    text-align: start;
+  }
+
+  .link-text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0px;
+    height: 2px;
+   background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  .link-text :global(svg) {
+    width: 20px;
+    height: 20px;
+  }
+
+  .card:hover .link-text::after {
+    width: 100%;
+  }
+
+  /* 3. Estilos para la nueva información de hospedaje */
+  .lodging-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  .price-range {
+    font-size: var(--font-4);
+    font-weight: bold;
+    color: var(--color-gray);
+  }
+
+  /* Estilos dinámicos de color (sin cambios) */
+  .card.is-brown h3, .card.is-brown .link-text { color: var(--color-brown); }
+  .card.is-brown .card-divider { background-color: var(--color-brown); }
+  .card.is-brown :global(.star-filled) { fill: rgba(195, 147, 124, 0.4); }
+
+  .card.is-green h3, .card.is-green .link-text { color: var(--color-green); }
+  .card.is-green .card-divider { background-color: var(--color-green); }
+  .card.is-green :global(.star-filled) { fill: rgba(130, 139, 58, 0.4); }
+
+  /* Estilos para la info de Hospedaje (sin cambios) */
+  .lodging-info { width: 100%; margin: 1rem 0; }
+  .star-rating { display: flex; justify-content: center; gap: 5px; margin-bottom: 1rem; }
+  .extra-details { display: flex; justify-content: space-around; font-size: var(--font-5); font-weight: bold; }
+
+  @media (max-width: 900px) {
+    .card {
+      gap: 20px;
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    h3 {
+      font-size: var(--font-5);
+    }
+
+    p {
+      font-size: var(--font-6);
+    }
+
+    .link-text {
+      font-size: var(--font-6);
+    }
+  }
+</style>

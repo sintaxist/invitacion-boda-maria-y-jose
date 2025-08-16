@@ -39,8 +39,8 @@
     --delayAnimation: 0.5s;
 
     /* Family Fonts */
-    --title-font: 'Cormorant', serif;
-    --body-font: 'Montserrat', sans-serif;
+    --title-font: "Cormorant", serif;
+    --body-font: "Montserrat", sans-serif;
   }
   *,
   *::before,
@@ -61,30 +61,54 @@
     margin: 0;
   }
 
-  h1,h2,h3,h4,h5,h5,p,a {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h5,
+  p,
+  a {
     margin-block-start: 0px;
     margin-block-end: 0px;
+  }
+
+  /* --- ANIMACIONES GLOBALES --- */
+  @keyframes slideInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .anim-item {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .animate .anim-item {
+    animation: slideInUp 0.8s ease-out forwards;
   }
 </style>
 <script>
   function setupScrollAnimations() {
-
     const elementsToAnimate = document.querySelectorAll(".animate-on-scroll");
 
     if (elementsToAnimate.length === 0) {
       return;
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.5,
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+      }
+    );
 
     elementsToAnimate.forEach((el) => observer.observe(el));
   }

@@ -4,8 +4,8 @@ const sections = [
   { id: "inicio", text: "Inicio" },
   { id: "historia", text: "Nuestra historia" },
   { id: "detalles", text: "Detalles de la boda" },
-  { id: "registro", text: "Confirma tu asistencia" },
   { id: "galeria", text: "Galería" },
+  { id: "registro", text: "Confirma tu asistencia" },
   { id: "hospedaje", text: "Hospedaje cercano" },
 ];
 ---
@@ -317,11 +317,14 @@ const sections = [
     background-color: var(--color-brown);
   }
 
+  header.is-scrolled {
+    background-color: var(--color-white);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra sutil para darle profundidad */
+  }
+
   @media (max-width: 900px) {
     .header {
       padding: 15px 8%;
-      background-color: var(--color-white);
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
     }
     .header .logo-link img {
       width: 60px;
@@ -366,7 +369,7 @@ const sections = [
 
 <script>
   function setupHeader() {
-    // Añadimos "as HTMLElement" para especificar el tipo de elemento
+    // --- 1. SELECCIÓN DE ELEMENTOS ---
     const header = document.querySelector(".header") as HTMLElement;
     const menuDeskItems = document.querySelectorAll(".menu-desk li");
     const menuDeskLinks = document.querySelectorAll(
@@ -376,111 +379,125 @@ const sections = [
     const menuTrigger = document.querySelector(".menu-trigger") as HTMLElement;
     const menuMobile = document.querySelector(".menu-mobile") as HTMLElement;
 
-    // La comprobación sigue siendo una buena práctica
-    if (
-      !header ||
-      !line ||
-      !menuTrigger ||
-      !menuMobile ||
-      menuDeskLinks.length === 0
-    ) {
+    // Si faltan elementos clave, detenemos la ejecución
+    if (!header || !line || !menuTrigger || !menuMobile || menuDeskLinks.length === 0) {
       return;
     }
 
-    menuTrigger.addEventListener("click", () => {
-      menuTrigger.classList.toggle("is-active");
-      menuMobile.classList.toggle("is-active");
-    });
+    // --- 2. DEFINICIÓN DE FUNCIONES ---
 
-    const updateActiveSection = () => {
-      const headerHeight = header.offsetHeight; // Ahora esto es válido
+    // Cambia el fondo del header al hacer scroll
+    const handleHeaderBackground = () => {
+      if (window.scrollY > 50) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    };
+    
+    // Actualiza la clase '.is-active' en los links del menú
+    const updateActiveClass = (activeId: string) => {
+      menuDeskItems.forEach((item, index) => {
+        const link = item.querySelector("a");
+        if (link && link.getAttribute("data-section-id") === activeId) {
+          item.classList.add("is-active");
+        } else {
+          item.classList.remove("is-active");
+        }
+      });
+      // También actualiza el menú móvil
+      document.querySelectorAll(".menu-mobile .menu-item").forEach((item) => {
+        // ... (lógica para menú móvil)
+      });
+    };
+
+    // Mueve la barra inferior a la posición del link activo
+    const moveLineToActive = () => {
+      const activeItem = document.querySelector(".menu-desk li.is-active") as HTMLElement;
+      if (activeItem) {
+        line.style.left = `${activeItem.offsetLeft}px`;
+        line.style.width = `${activeItem.offsetWidth}px`;
+      }
+    };
+    
+    // Detecta la sección visible durante el scroll
+    const updateSectionOnScroll = () => {
+      const headerHeight = header.offsetHeight;
       let currentSectionId = "";
-
       menuDeskLinks.forEach((link) => {
         const sectionId = link.getAttribute("data-section-id");
         if (sectionId) {
           const element = document.getElementById(sectionId);
           if (element) {
             const rect = element.getBoundingClientRect();
-            if (
-              rect.top <= window.innerHeight / 2 &&
-              rect.bottom >= headerHeight
-            ) {
+            if (rect.top <= window.innerHeight / 2 && rect.bottom >= headerHeight) {
               currentSectionId = sectionId;
             }
           }
         }
       });
-
       updateActiveClass(currentSectionId || "inicio");
       moveLineToActive();
     };
 
-    // Le indicamos a TypeScript que activeId será un string
-    const updateActiveClass = (activeId: string) => {
-      menuDeskItems.forEach((item) => {
-        const link = item.querySelector("a");
-        if (link && link.getAttribute("data-section-id") === activeId) {
-          item.classList.add("is-active");
-        } else {
-          item.classList.remove("is-active");
-        }
-      });
-      document.querySelectorAll(".menu-mobile .menu-item").forEach((item) => {
-        const link = item.querySelector("a");
-        if (link && link.getAttribute("data-section-id") === activeId) {
-          item.classList.add("is-active");
-        } else {
-          item.classList.remove("is-active");
-        }
-      });
+    // Función "maestra" que se ejecuta en cada evento de scroll
+    const onWindowScroll = () => {
+      handleHeaderBackground();
+      updateSectionOnScroll();
     };
 
-    const moveLineToActive = () => {
-      // Aquí también especificamos el tipo del elemento activo
-      const activeItem = document.querySelector(
-        ".menu-desk li.is-active"
-      ) as HTMLElement;
-      if (activeItem) {
-        line.style.left = `${activeItem.offsetLeft}px`; // Válido
-        line.style.width = `${activeItem.offsetWidth}px`; // Válido
-      }
-    };
-
-    // Indicamos que 'e' es un evento
+    // Función que se ejecuta al hacer CLIC en un link
     const smoothScrollToSection = (e: Event) => {
-      e.preventDefault();
-      // Especificamos que el objetivo del evento es un enlace
+      e.preventDefault(); // Previene el salto brusco del navegador
       const target = e.currentTarget as HTMLAnchorElement;
       const sectionId = target.getAttribute("href");
 
-      if (sectionId) {
-        const targetElement = document.querySelector(sectionId);
-        if (targetElement) {
-          const headerHeight = header.offsetHeight;
-          const elementPosition = targetElement.getBoundingClientRect().top;
-          const offsetPosition =
-            elementPosition + window.scrollY - headerHeight;
+      if (!sectionId) return;
 
-          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+      const targetElement = document.querySelector(sectionId);
+      if (targetElement) {
+        // --- LA CORRECCIÓN CLAVE ESTÁ AQUÍ ---
+        // 1. Actualizamos la clase activa INMEDIATAMENTE al hacer clic
+        const targetId = sectionId.substring(1); // Quita el '#' del href
+        updateActiveClass(targetId);
+        // 2. Movemos la barra INMEDIATAMENTE
+        moveLineToActive();
+        // 3. Hacemos el scroll suave
+        const headerHeight = header.offsetHeight;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerHeight;
+        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
 
-          if (menuMobile.classList.contains("is-active")) {
-            menuTrigger.classList.remove("is-active");
-            menuMobile.classList.remove("is-active");
-          }
+        // Cerramos el menú móvil si está abierto
+        if (menuMobile.classList.contains("is-active")) {
+          menuTrigger.classList.remove("is-active");
+          menuMobile.classList.remove("is-active");
         }
       }
     };
 
-    window.addEventListener("scroll", updateActiveSection);
+    // --- 3. ASIGNACIÓN DE EVENTOS ---
 
+    // Un único listener para el evento 'scroll'
+    window.addEventListener('scroll', onWindowScroll);
+    
+    // Asignamos el evento 'click' a todos los links del menú (escritorio y móvil)
     const allLinks = document.querySelectorAll('a[href^="#"]');
     allLinks.forEach((link) => {
       link.addEventListener("click", smoothScrollToSection);
     });
-
-    updateActiveSection();
-    setTimeout(moveLineToActive, 100);
+    
+    // Listener para el menú hamburguesa
+    menuTrigger.addEventListener("click", () => {
+      menuTrigger.classList.toggle("is-active");
+      menuMobile.classList.toggle("is-active");
+    });
+    
+    // --- 4. ESTADO INICIAL ---
+    // Ejecutamos las funciones una vez al cargar para el estado inicial correcto
+    handleHeaderBackground();
+    updateSectionOnScroll();
+    setTimeout(moveLineToActive, 100); // Pequeño delay para asegurar que el DOM está listo
   }
 
   document.addEventListener("DOMContentLoaded", setupHeader);

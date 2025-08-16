@@ -1,0 +1,54 @@
+---
+interface Props {
+  text: string;
+  color?: 'brown' | 'green';
+  class?: string;
+}
+const { text, color = 'brown', class: className } = Astro.props;
+---
+<div class:list={["title-wrapper", `is-${color}`, className]}>
+  <h2>{text}</h2>
+  <span class="title-divider"></span>
+</div>
+
+<style>
+  .title-wrapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    margin: auto;
+  }
+
+  h2 {
+    font-size: var(--font-1);
+    line-height: 1.1;
+  }
+
+  .title-divider {
+    width: 80%;
+    height: 2px;
+  }
+
+  /* Estilos dinámicos basados en el color */
+  .title-wrapper.is-brown h2{
+    color: var(--color-brown);
+  }
+
+  .title-wrapper.is-brown .title-divider {
+    background-color: var(--color-brown);
+  }
+
+  .title-wrapper.is-green h2 {
+    color: var(--color-green);
+  }
+
+  .title-wrapper.is-green .title-divider {
+    background-color: var(--color-green);
+  }
+
+  @media (max-width: 900px) {
+    h2 { font-size: var(--font-2); }
+  }
+</style>

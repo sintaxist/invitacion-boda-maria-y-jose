@@ -4,6 +4,9 @@ import Header from '@/components/Header.astro';
 
 import Hero from '@/sections/Hero.astro';
 import Historia from '@/sections/Historia.astro';
+import Detalles from '@/sections/Detalles.astro';
+import Galeria from '@/sections/Galeria.astro';
+import Hospedaje from '@/sections/Hospedaje.astro';
 ---
 <Layout>
   <Header />
@@ -14,10 +17,13 @@ import Historia from '@/sections/Historia.astro';
       <Historia />
     </div>
 
-    <section id="detalles"></section>
-    <section id="registro"></section>
-    <section id="galeria"></section>
-    <section id="hospedaje"></section>
+    <Detalles />
+
+    <div class="main-background">
+      <Galeria />
+    </div>
+
+    <Hospedaje />
   </main>
 </Layout>
 

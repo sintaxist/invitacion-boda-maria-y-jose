@@ -1,0 +1,71 @@
+---
+// src/components/Button.astro
+interface Props {
+  text: string;
+  href: string;
+  color?: 'brown' | 'green';
+  variant?: 'primary' | 'secondary';
+  target?: string;
+  className?: string;
+}
+
+const { 
+  text, 
+  href, 
+  color = 'brown', 
+  variant = 'primary', 
+  target,
+  className 
+} = Astro.props;
+---
+
+<a 
+  href={href} 
+  target={target} 
+  class:list={['btn', `btn--${color}`, `btn--${variant}`, className]}
+>
+  {text}
+</a>
+
+<style>
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+
+  /* --- Variante Primaria (fondo sólido) --- */
+  .btn--primary.btn--brown {
+    background-color: var(--color-brown);
+    color: var(--color-white);
+    border-color: var(--color-brown);
+  }
+  .btn--primary.btn--green {
+    background-color: var(--color-green);
+    color: var(--color-white);
+    border-color: var(--color-green);
+  }
+
+  /* --- Variante Secundaria (fondo transparente) --- */
+  .btn--secondary.btn--brown {
+    background-color: rgba(195, 147, 124, 0.2); /* Color café con opacidad */
+    color: var(--color-brown);
+    border-color: var(--color-brown);
+  }
+  .btn--secondary.btn--green {
+    background-color: rgba(130, 139, 58, 0.2); /* Color verde con opacidad */
+    color: var(--color-green);
+    border-color: var(--color-green);
+  }
+</style>

@@ -1,0 +1,129 @@
+---
+import Title from "@/components/Title.astro";
+import Card from "@/components/Card.astro";
+
+// Datos de las tarjetas. Cambia los href a tus URLs reales.
+const cardsDetalles = [
+  {
+    title: "Ceremonia",
+    description:
+      "Nos uniremos en matrimonio en la Parroquia de Santa María in Trastevere, Roma. Un lugar lleno de historia y significado, donde iniciaremos esta nueva etapa.",
+    linkText: "Ver Ubicación",
+    href: "https://maps.app.goo.gl/u5m7yS11sopn1Xx69",
+  },
+  {
+    title: "Recepción",
+    description:
+      "Después de la ceremonia, celebraremos juntos en el Vaticano. Una noche para compartir risas, brindar y bailar bajo un escenario único en el mundo.",
+    linkText: "Ver Ubicación",
+    href: "https://maps.app.goo.gl/wzNCjDhbVs4EYnPx7",
+  },
+  {
+    title: "Código de Vestimenta",
+    description:
+      "Etiqueta formal. Hombres con traje oscuro, mujeres con vestido largo. Los tonos claros y elegantes son bienvenidos para este día especial.",
+    linkText: "Ver ideas en Pinterest",
+    href: "https://mx.pinterest.com/danielamaciaseventos/c%C3%B3digo-de-vestimenta-boda-sd/",
+  },
+];
+---
+
+<section id="detalles" class="container animate-on-scroll">
+  <Title text="Detalles del Evento" color="brown" class="anim-item" />
+
+  <div class="cards-container">
+    {
+      cardsDetalles.map((card) => (
+        <Card
+          title={card.title}
+          description={card.description}
+          linkText={card.linkText}
+          href={card.href},
+          type="detalles"
+          color="brown"
+          class="anim-item"
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    padding: 5rem 6% 6rem;
+    background-color: var(--color-white);
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .container:before {
+    content: "";
+    position: absolute;
+    top: -5%;
+    left: 0;
+    width: 100%;
+    height: 10%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 39.45%);
+  }
+
+  .cards-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+  }
+
+  /* --- ANIMACIONES --- */
+  
+  :global(.animate) .container > .anim-item:nth-child(1) { /* Title */
+    animation-delay: 0.1s;
+  }
+  :global(.animate) .container > .anim-item:nth-child(2) { /* cards-container */
+    animation-delay: 0.3s;
+  }
+  :global(.animate) .container > .anim-item:nth-child(3) { /* Button */
+    animation-delay: 0.9s;
+  }
+  :global(.animate) .cards-container .anim-item:nth-child(1) { animation-delay: 0.3s; }
+  :global(.animate) .cards-container .anim-item:nth-child(2) { animation-delay: 0.5s; }
+  :global(.animate) .cards-container .anim-item:nth-child(3) { animation-delay: 0.7s; }
+
+  /* --- MEDIA QUERIES --- */
+
+  @media (max-width: 900px) {
+    .cards-container {
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .container {
+      padding: 3rem 6%;
+      gap: 3rem;
+    }
+
+    .detail-card:nth-child(1),
+    .detail-card:nth-child(2) {
+      width: calc(50% - 10px);
+      flex: unset;
+    }
+
+    .detail-card:nth-child(3) {
+      width: 100%;
+      flex: 1;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .detail-card,
+    .detail-card:nth-child(1),
+    .detail-card:nth-child(2),
+    .detail-card:nth-child(3) {
+      width: 100%;
+    }
+  }
+</style>
