@@ -75,7 +75,7 @@ const sections = [
     left: 0;
     z-index: 10;
     width: 100%;
-    gap: 10px;
+    gap: 1.5rem;
   }
 
   .logo-link {
@@ -108,7 +108,7 @@ const sections = [
     list-style-type: none;
     padding: 0;
     margin: 0;
-    gap: 10px;
+    gap: .7rem;
   }
 
   .menu-desk li a {
@@ -124,7 +124,7 @@ const sections = [
   }
 
   .menu-desk li a:hover {
-    color: var(--color-brown); /* <-- ESTADO HOVER AÑADIDO */
+    color: var(--color-brown);
   }
 
   .menu-desk li.is-active a {
@@ -251,7 +251,7 @@ const sections = [
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.5rem;
   }
 
   .menu-mobile .menu-item a {
@@ -319,8 +319,10 @@ const sections = [
 
   header.is-scrolled {
     background-color: var(--color-white);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra sutil para darle profundidad */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   }
+
+  /* --- MEDIA QUERIES --- */
 
   @media (max-width: 900px) {
     .header {
@@ -347,7 +349,7 @@ const sections = [
 
   @media (max-width: 550px) {
     .menu-mobile ul {
-      gap: 10px;
+      gap: 1.5rem;
     }
     .menu-mobile .menu-item a {
       font-size: var(--font-3);
@@ -379,12 +381,9 @@ const sections = [
     const menuTrigger = document.querySelector(".menu-trigger") as HTMLElement;
     const menuMobile = document.querySelector(".menu-mobile") as HTMLElement;
 
-    // Si faltan elementos clave, detenemos la ejecución
     if (!header || !line || !menuTrigger || !menuMobile || menuDeskLinks.length === 0) {
       return;
     }
-
-    // --- 2. DEFINICIÓN DE FUNCIONES ---
 
     // Cambia el fondo del header al hacer scroll
     const handleHeaderBackground = () => {
@@ -405,9 +404,14 @@ const sections = [
           item.classList.remove("is-active");
         }
       });
-      // También actualiza el menú móvil
+
       document.querySelectorAll(".menu-mobile .menu-item").forEach((item) => {
-        // ... (lógica para menú móvil)
+        const link = item.querySelector("a");
+        if (link && link.getAttribute("data-section-id") === activeId) {
+          item.classList.add("is-active");
+        } else {
+          item.classList.remove("is-active");
+        }
       });
     };
 
@@ -448,7 +452,7 @@ const sections = [
 
     // Función que se ejecuta al hacer CLIC en un link
     const smoothScrollToSection = (e: Event) => {
-      e.preventDefault(); // Previene el salto brusco del navegador
+      e.preventDefault();
       const target = e.currentTarget as HTMLAnchorElement;
       const sectionId = target.getAttribute("href");
 
@@ -456,19 +460,15 @@ const sections = [
 
       const targetElement = document.querySelector(sectionId);
       if (targetElement) {
-        // --- LA CORRECCIÓN CLAVE ESTÁ AQUÍ ---
-        // 1. Actualizamos la clase activa INMEDIATAMENTE al hacer clic
-        const targetId = sectionId.substring(1); // Quita el '#' del href
+        
+        const targetId = sectionId.substring(1);
         updateActiveClass(targetId);
-        // 2. Movemos la barra INMEDIATAMENTE
         moveLineToActive();
-        // 3. Hacemos el scroll suave
         const headerHeight = header.offsetHeight;
         const elementPosition = targetElement.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.scrollY - headerHeight;
         window.scrollTo({ top: offsetPosition, behavior: "smooth" });
 
-        // Cerramos el menú móvil si está abierto
         if (menuMobile.classList.contains("is-active")) {
           menuTrigger.classList.remove("is-active");
           menuMobile.classList.remove("is-active");
@@ -476,9 +476,6 @@ const sections = [
       }
     };
 
-    // --- 3. ASIGNACIÓN DE EVENTOS ---
-
-    // Un único listener para el evento 'scroll'
     window.addEventListener('scroll', onWindowScroll);
     
     // Asignamos el evento 'click' a todos los links del menú (escritorio y móvil)
@@ -493,11 +490,10 @@ const sections = [
       menuMobile.classList.toggle("is-active");
     });
     
-    // --- 4. ESTADO INICIAL ---
     // Ejecutamos las funciones una vez al cargar para el estado inicial correcto
     handleHeaderBackground();
     updateSectionOnScroll();
-    setTimeout(moveLineToActive, 100); // Pequeño delay para asegurar que el DOM está listo
+    setTimeout(moveLineToActive, 100);
   }
 
   document.addEventListener("DOMContentLoaded", setupHeader);

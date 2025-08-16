@@ -72,24 +72,6 @@ const galleryImages = [
 </section>
 
 <style>
-  .container {
-    padding: 5rem 6%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
-    position: relative;
-  }
-
-  .container:before {
-    content: "";
-    position: absolute;
-    top: -3%;
-    left: 0;
-    width: 100%;
-    height: 6%;
-    background: linear-gradient(180deg,rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-  }
 
   p {
     text-align: center;
@@ -109,6 +91,7 @@ const galleryImages = [
     max-width: 1200px;
     margin: auto;
     aspect-ratio: 16 / 9;
+    z-index: 2;
   }
 
   .gallery-item:nth-child(1) {
@@ -220,7 +203,7 @@ const galleryImages = [
     right: 2rem;
     background: none;
     border: none;
-    color: white;
+    color: var(--color-white);
     font-size: 3rem;
     cursor: pointer;
     line-height: 1;
@@ -249,7 +232,7 @@ const galleryImages = [
   .nav-btn svg {
     width: 24px;
     height: 24px;
-    stroke: white;
+    stroke: var(--color-white);
     stroke-width: 3;
     fill: none;
   }
@@ -264,13 +247,6 @@ const galleryImages = [
 
   /* --- ANIMACIONES --- */
 
-  :global(.animate) .container > .anim-item:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-  :global(.animate) .container > .anim-item:nth-child(2) {
-    animation-delay: 0.3s;
-  }
-
   :global(.animate) .gallery-item.anim-item:nth-child(1) { animation-delay: 0.5s; }
   :global(.animate) .gallery-item.anim-item:nth-child(2) { animation-delay: 0.6s; }
   :global(.animate) .gallery-item.anim-item:nth-child(3) { animation-delay: 0.7s; }
@@ -281,17 +257,13 @@ const galleryImages = [
   /* --- MEDIA QUERIES --- */
 
   @media (max-width: 900px) {
-    .container {
-      padding: 3rem 6%;
-      gap: 1.5rem;
-    }
 
     .gallery-grid {
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(5, 1fr);
       aspect-ratio: auto;
       max-height: 800px;
-      gap: 20px;
+      gap: 1.7rem;
     }
 
     .gallery-item:nth-child(1) {

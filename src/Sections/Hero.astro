@@ -2,7 +2,7 @@
 import Decoration from "@/components/Decoration.astro";
 ---
 
-<section id="inicio" class="container animate-on-scroll">
+<section id="inicio" class="containerHero animate-on-scroll">
   <article>
     <div class="titleContainer">
       <div class="decoration-wrapper anim-item">
@@ -33,7 +33,7 @@ import Decoration from "@/components/Decoration.astro";
 </section>
 
 <style>
-  .container {
+  .containerHero {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -41,7 +41,7 @@ import Decoration from "@/components/Decoration.astro";
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 2rem;
     overflow: hidden;
     color: var(--color-gray);
     box-sizing: border-box;
@@ -59,7 +59,7 @@ import Decoration from "@/components/Decoration.astro";
   .titleContainer {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 2rem;
     align-items: center;
     text-align: center;
   }
@@ -108,48 +108,48 @@ import Decoration from "@/components/Decoration.astro";
   }
 
   /* --- ANIMACIONES --- */
-  .container.animate .titleContainer .anim-item:nth-child(1),
-  .container.animate .titleContainer .anim-item:nth-child(8) {
+  .containerHero.animate .titleContainer .anim-item:nth-child(1),
+  .containerHero.animate .titleContainer .anim-item:nth-child(8) {
     animation-delay: 0s; /* Los decoradores inician de inmediato */
   }
 
-  .container.animate .imgContainer.anim-item {
+  .containerHero.animate .imgContainer.anim-item {
     animation-delay: 0.3s;
   }
 
-  .container.animate .titleContainer .anim-item:nth-child(2) {
+  .containerHero.animate .titleContainer .anim-item:nth-child(2) {
     animation-delay: 0.3s;
   } /* ¡Nos casamos! */
-  .container.animate .titleContainer .anim-item:nth-child(3) {
+  .containerHero.animate .titleContainer .anim-item:nth-child(3) {
     animation-delay: 0.4s;
   } /* Nombres */
-  .container.animate .titleContainer .anim-item:nth-child(4) {
+  .containerHero.animate .titleContainer .anim-item:nth-child(4) {
     animation-delay: 0.5s;
   } /* Fecha */
-  .container.animate .titleContainer .anim-item:nth-child(5) {
+  .containerHero.animate .titleContainer .anim-item:nth-child(5) {
     animation-delay: 0.6s;
   } /* Línea 1 */
-  .container.animate .titleContainer .anim-item:nth-child(6) {
+  .containerHero.animate .titleContainer .anim-item:nth-child(6) {
     animation-delay: 0.7s;
   } /* Contador */
-  .container.animate .titleContainer .anim-item:nth-child(7) {
+  .containerHero.animate .titleContainer .anim-item:nth-child(7) {
     animation-delay: 0.8s;
   } /* Línea 2 */
 
   /* --- MEDIA QUERIES --- */
   @media (max-width: 900px) {
-    .container {
+    .containerHero {
       padding-top: 120px;
     }
 
     article {
       flex-direction: column;
-      gap: 50px;
+      gap: 3.5rem;
     }
 
     .titleContainer {
       width: 100%;
-      gap: 20px;
+      gap: 1.7rem;
     }
 
     .imgContainer {
@@ -177,7 +177,7 @@ import Decoration from "@/components/Decoration.astro";
   @media (max-width: 900px) {
     article {
       flex-direction: column;
-      gap: 30px;
+      gap: 2rem;
     }
 
     .countdown-timer {

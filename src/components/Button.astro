@@ -2,30 +2,49 @@
 // src/components/Button.astro
 interface Props {
   text: string;
-  href: string;
-  color?: 'brown' | 'green';
-  variant?: 'primary' | 'secondary';
-  target?: string;
+  href?: string;
+  type?: "submit" | "button";
+  color?: "brown" | "green";
+  variant?: "primary" | "secondary";
+  disabled?: boolean;
   className?: string;
+  id?: string;
 }
 
-const { 
-  text, 
-  href, 
-  color = 'brown', 
-  variant = 'primary', 
-  target,
-  className 
+const {
+  text,
+  href,
+  type,
+  color = "brown",
+  variant = "primary",
+  disabled = false,
+  className,
+  id,
 } = Astro.props;
+
 ---
 
-<a 
-  href={href} 
-  target={target} 
-  class:list={['btn', `btn--${color}`, `btn--${variant}`, className]}
->
-  {text}
-</a>
+{
+  Astro.props.href ? (
+    <a
+      href={href}
+      class:list={["btn", `btn--${color}`, `btn--${variant}`, className]}
+      aria-disabled={disabled}
+      id={id}
+    >
+      {text}
+    </a>
+  ) : (
+    <button
+      type={type}
+      class:list={["btn", `btn--${color}`, `btn--${variant}`, className]}
+      disabled={disabled}
+      id={id}
+    >
+      {text}
+    </button>
+  )
+}
 
 <style>
   .btn {
@@ -33,19 +52,38 @@ const {
     padding: 0.8rem 1.5rem;
     border-radius: 50px;
     text-decoration: none;
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-body);
     font-weight: bold;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: var(--font-5);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      filter 0.3s ease;
     border: 2px solid transparent;
+    cursor: pointer;
   }
 
-  .btn:hover {
+  .btn:hover:not([disabled]) {
     transform: translateY(-3px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    filter: brightness(1.1);
   }
 
-  /* --- Variante Primaria (fondo sólido) --- */
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none;
+    transform: none;
+    box-shadow: none;
+    filter: none;
+  }
+
+  /* --- BUTTON PRIMARY --- */
   .btn--primary.btn--brown {
     background-color: var(--color-brown);
     color: var(--color-white);
@@ -57,14 +95,14 @@ const {
     border-color: var(--color-green);
   }
 
-  /* --- Variante Secundaria (fondo transparente) --- */
+  /* --- BUTTON SECONDARY --- */
   .btn--secondary.btn--brown {
-    background-color: rgba(195, 147, 124, 0.2); /* Color café con opacidad */
+    background-color: rgba(195, 147, 124, 0.2);
     color: var(--color-brown);
     border-color: var(--color-brown);
   }
   .btn--secondary.btn--green {
-    background-color: rgba(130, 139, 58, 0.2); /* Color verde con opacidad */
+    background-color: rgba(130, 139, 58, 0.2);
     color: var(--color-green);
     border-color: var(--color-green);
   }

@@ -26,22 +26,17 @@ import Title from "@/components/Title.astro";
 </section>
 
 <style>
-  .container {
+  #historia {
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
-    color: var(--color-gray);
-    padding: 5rem 6% 10%;
     padding-top: 0px;
-    box-sizing: border-box;
+    padding-bottom: calc(6% + 60px);
     overflow: hidden;
   }
 
   p {
     text-align: center;
     font-size: var(--font-4);
+    color: var(--color-gray);
     line-height: 1.6;
     max-width: 800px;
     margin: 0;
@@ -67,7 +62,6 @@ import Title from "@/components/Title.astro";
 
   /* --- ANIMACIONES --- */
 
-  :global(.animate) .title-wrapper { animation-delay: 0.2s; }
   :global(.animate) p:nth-of-type(1) { animation-delay: 0.4s; }
   :global(.animate) p:nth-of-type(2) { animation-delay: 0.6s; }
   :global(.animate) .decoration-aside { animation-delay: 0.8s; }
@@ -75,11 +69,13 @@ import Title from "@/components/Title.astro";
 
   /* --- MEDIA QUERIES --- */
   @media (max-width: 900px) {
-    .container {
+    #historia {
       padding: 3rem 6%;
-      gap: 1.5rem;
+      padding-bottom: calc(6% + 60px);
     }
+  
     p { font-size: var(--font-5); }
+  
     .decoration-aside { display: none; }
   }
 </style>

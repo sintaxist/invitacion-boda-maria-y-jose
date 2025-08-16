@@ -32,13 +32,13 @@ const lodgingData = [
   }
 ];
 ---
-<section id="hospedaje" class="container animate-on-scroll">
+<section id="hospedaje" class="container container-before-gradient animate-on-scroll">
   <Title text="Hospedaje Cercano" color="green" class="anim-item" />
   <p class="anim-item">
     Para tu comodidad, hemos seleccionado algunas opciones de hospedaje cercanas al lugar del evento con diferentes rangos de precios.
   </p>
   <div class="cards-container">
-    {lodgingData.map(hotel => (
+    {lodgingData.map((hotel, index) => (
       <Card
         title={hotel.title}
         description={hotel.description}
@@ -50,31 +50,13 @@ const lodgingData = [
         distance={hotel.distance}
         priceRange={hotel.priceRange}
         class="anim-item"
+        animationDelayIndex={index}
       />
     ))}
   </div>
 </section>
 
 <style>
-  /* Usamos los mismos estilos de contenedor y layout que en Detalles */
-  .container {
-    padding: 5rem 6%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2.5rem;
-    position: relative;
-  }
-
-  .container:before {
-    content: "";
-    position: absolute;
-    top: -3%;
-    left: 0;
-    width: 100%;
-    height: 6%;
-    background: linear-gradient(180deg,rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-  }
 
   p {
     text-align: center;
@@ -90,24 +72,20 @@ const lodgingData = [
     justify-content: center;
     width: 100%;
     max-width: 1200px;
+    z-index: 2;
   }
-
-  /* --- ANIMACIONES --- */
-
-  :global(.animate) .container > .anim-item:nth-child(1) { animation-delay: 0.1s; }
-  :global(.animate) .container > .anim-item:nth-child(2) { animation-delay: 0.3s; }
-  :global(.animate) .cards-container .anim-item:nth-child(1) { animation-delay: 0.5s; }
-  :global(.animate) .cards-container .anim-item:nth-child(2) { animation-delay: 0.7s; }
-  :global(.animate) .cards-container .anim-item:nth-child(3) { animation-delay: 0.9s; }
 
   /* --- MEDIA QUERIES --- */
 
   @media (max-width: 900px) {
-    .container {
-        padding: 3rem 6%;
-        gap: 1.5rem;
+
+    .cards-container {
+      gap: 1.7rem;
+      flex-wrap: wrap;
     }
-    .cards-container { flex-direction: column; }
-    p { font-size: var(--font-5);
-  }
+
+    p {
+      font-size: var(--font-5);
+    }
+}
 </style>

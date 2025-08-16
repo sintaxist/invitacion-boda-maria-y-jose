@@ -14,6 +14,20 @@
   </head>
   <body>
     <slot />
+    <img
+      src="/images/SVG/footer-decoration-2.svg"
+      alt="Decoración de esquina"
+      class="decoration top-left"
+      width="100"
+      height="100"
+    />
+    <img
+      src="/images/SVG/footer-decoration.svg"
+      alt="Decoración de esquina"
+      class="decoration bottom-right"
+      width="100"
+      height="100"
+    />
   </body>
 </html>
 <style is:global>
@@ -34,7 +48,7 @@
     --font-6: 0.8rem;
     --font-cursive: 5.5rem;
 
-    /* Animaciones */
+    /* Variables Animaciones */
     --durationAnimation: 0.7s;
     --delayAnimation: 0.5s;
 
@@ -46,19 +60,6 @@
   *::before,
   *::after {
     box-sizing: border-box;
-  }
-
-  /* Estilos base */
-  body {
-    font-family: var(--body-font);
-    margin: 0;
-  }
-
-  h1,
-  h2,
-  h3 {
-    font-family: var(--title-font);
-    margin: 0;
   }
 
   h1,
@@ -73,7 +74,76 @@
     margin-block-end: 0px;
   }
 
+  /* Estilos base */
+
+  body {
+    font-family: var(--body-font);
+    margin: 0;
+    background-color: var(--color-white);
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--title-font);
+    margin: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    padding: 5rem 6% 6rem;
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  .container-before-gradient:before {
+    content: "";
+    position: absolute;
+    top: -90px;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.01) 0%,
+      rgba(255, 255, 255, 1) 80%
+    );
+  }
+
+  .container-after-gradient:after {
+    content: "";
+    position: absolute;
+    bottom: -90px;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.01) 0%,
+      rgba(255, 255, 255, 1) 80%
+    );
+  }
+
+  .decoration {
+    position: absolute;
+    width: 200px;
+    height: auto;
+    bottom: 0px;
+  }
+  .top-left {
+    left: 0;
+  }
+  .bottom-right {
+    right: 0;
+  }
+
   /* --- ANIMACIONES GLOBALES --- */
+
   @keyframes slideInUp {
     to {
       opacity: 1;
@@ -86,6 +156,15 @@
   }
   .animate .anim-item {
     animation: slideInUp 0.8s ease-out forwards;
+  }
+
+  /* --- MEDIA QUERIES --- */
+
+  @media (max-width: 900px) {
+    .container {
+      padding: 3rem 6%;
+      gap: 2rem;
+    }
   }
 </style>
 <script>

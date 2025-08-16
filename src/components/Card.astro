@@ -4,45 +4,71 @@ import Star from "@/icons/Star.astro";
 
 // Las props no cambian
 interface Props {
-  title: string; description: string; linkText: string; href: string;
-  type?: 'detalles' | 'hospedaje'; color?: 'brown' | 'green';
-  rating?: number; distance?: string; priceRange?: string;
+  title: string;
+  description: string;
+  linkText: string;
+  href: string;
+  type?: "detalles" | "hospedaje";
+  color?: "brown" | "green";
+  rating?: number;
+  distance?: string;
+  priceRange?: string;
+  animationDelayIndex?: number;
   class?: string;
 }
 const {
-  title, description, linkText, href,
-  type = 'detalles', color = 'brown',
-  rating = 0, distance, priceRange,
+  title,
+  description,
+  linkText,
+  href,
+  type = "detalles",
+  color = "brown",
+  rating = 0,
+  distance,
+  priceRange,
+  animationDelayIndex = 0,
   class: className,
 } = Astro.props;
+
 const stars = Array(5).fill(null);
+
+const delay = 0.3 + animationDelayIndex * 0.2;
 ---
 
-<a href={href} target="_blank" class:list={["card", `is-${color}`, className]}>
+<a
+  href={href}
+  target="_blank"
+  class:list={["card", `is-${color}`, className]}
+  style={`animation-delay: ${delay}s;`}
+>
   <div class="card-header">
     <h3>{title}</h3>
-      {type === 'hospedaje' ? (
+    {
+      type === "hospedaje" ? (
         <div class="star-rating">
-          {stars.map((_, index) => <Star filled={index < rating} />)}
+          {stars.map((_, index) => (
+            <Star filled={index < rating} />
+          ))}
         </div>
+      ) : (
+        <span class="card-divider" />
       )
-      :
-      (
-        <span class="card-divider"></span>
-      )}
+    }
   </div>
-  
-  {type === 'hospedaje' && (
-    <div class="lodging-info">
-      <div class="extra-details">
-        {distance && <span>📍 {distance}</span>}
+
+  {
+    type === "hospedaje" && (
+      <div class="lodging-info">
+        <div class="extra-details">
+          {distance && <span>📍 {distance}</span>}
+        </div>
+        {priceRange && <h4 class="price-range">{priceRange}</h4>}
       </div>
-      {priceRange && <span class="price-range">{priceRange}</span>}
-    </div>
-  )}
+    )
+  }
 
   <p>{description}</p>
-  
+
   <span class="link-text">
     {linkText}
     <ArrowLlink />
@@ -65,14 +91,15 @@ const stars = Array(5).fill(null);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px;
+    gap: 1.5rem;
     text-decoration: none;
     color: var(--color-gray);
     transition: background 0.3s ease;
+    min-width: 200px;
   }
 
   .card:hover {
-    background-color: #fffaf5; /* Mantenemos el hover sencillo */
+    background-color: #fffaf5;
   }
 
   .card.is-green:hover {
@@ -83,7 +110,7 @@ const stars = Array(5).fill(null);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 0.5rem;
     width: fit-content;
   }
 
@@ -112,7 +139,7 @@ const stars = Array(5).fill(null);
 
   .link-text {
     display: flex;
-    gap: 10px;
+    gap: 0.5rem;
     align-items: center;
     justify-content: center;
     font-weight: bold;
@@ -129,7 +156,7 @@ const stars = Array(5).fill(null);
     bottom: -2px;
     width: 0px;
     height: 2px;
-   background-color: currentColor;
+    background-color: currentColor;
     transition: width 0.3s ease;
   }
 
@@ -142,7 +169,6 @@ const stars = Array(5).fill(null);
     width: 100%;
   }
 
-  /* 3. Estilos para la nueva información de hospedaje */
   .lodging-info {
     width: 100%;
     display: flex;
@@ -151,28 +177,56 @@ const stars = Array(5).fill(null);
     align-items: center;
   }
   .price-range {
-    font-size: var(--font-4);
+    font-size: var(--font-3);
+    font-family: var(--family-body);
     font-weight: bold;
     color: var(--color-gray);
   }
 
-  /* Estilos dinámicos de color (sin cambios) */
-  .card.is-brown h3, .card.is-brown .link-text { color: var(--color-brown); }
-  .card.is-brown .card-divider { background-color: var(--color-brown); }
-  .card.is-brown :global(.star-filled) { fill: rgba(195, 147, 124, 0.4); }
+  .card.is-brown h3,
+  .card.is-brown .link-text {
+    color: var(--color-brown);
+  }
+  .card.is-brown .card-divider {
+    background-color: var(--color-brown);
+  }
+  .card.is-brown :global(.star-filled) {
+    fill: rgba(195, 147, 124, 0.4);
+  }
 
-  .card.is-green h3, .card.is-green .link-text { color: var(--color-green); }
-  .card.is-green .card-divider { background-color: var(--color-green); }
-  .card.is-green :global(.star-filled) { fill: rgba(130, 139, 58, 0.4); }
+  .card.is-green h3,
+  .card.is-green .link-text {
+    color: var(--color-green);
+  }
+  .card.is-green .card-divider {
+    background-color: var(--color-green);
+  }
+  .card.is-green :global(.star-filled) {
+    fill: rgba(130, 139, 58, 0.4);
+  }
 
-  /* Estilos para la info de Hospedaje (sin cambios) */
-  .lodging-info { width: 100%; margin: 1rem 0; }
-  .star-rating { display: flex; justify-content: center; gap: 5px; margin-bottom: 1rem; }
-  .extra-details { display: flex; justify-content: space-around; font-size: var(--font-5); font-weight: bold; }
+  .lodging-info {
+    width: 100%;
+    margin: 1rem 0;
+    text-align: center;
+  }
+  .star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .extra-details {
+    display: flex;
+    justify-content: space-around;
+    font-size: var(--font-5);
+    font-weight: regular;
+  }
+
+  /* --- MEDIA QUERIES --- */
 
   @media (max-width: 900px) {
     .card {
-      gap: 20px;
+      gap: 1rem;
       padding: 20px;
       border-radius: 20px;
     }
@@ -187,6 +241,12 @@ const stars = Array(5).fill(null);
 
     .link-text {
       font-size: var(--font-6);
+    }
+  }
+
+  @media (max-width: 500px) {
+    .lodging-info {
+      gap: 5px;
     }
   }
 </style>

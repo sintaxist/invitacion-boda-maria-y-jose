@@ -3,7 +3,7 @@
 const { rotate = false } = Astro.props;
 ---
 
-<div class:list={["container", { rotate: rotate }]}>
+<div class:list={["container-flowers", { rotate: rotate }]}>
   <svg
     width="143"
     height="81"
@@ -747,17 +747,15 @@ const { rotate = false } = Astro.props;
   </svg>
 </div>
 
-{/* ... tu SVG con class="anim-path" en cada path ... */}
-
 <style>
-  .container {
+  .container-flowers {
     transform: scale(1.5);
   }
   .rotate {
     transform: rotate(180deg) scale(1.5);
   }
 
-  /* --- LÓGICA DE ANIMACIÓN CORREGIDA --- */
+  /* --- ANIMACIÓN --- */
 
   .anim-path {
     fill-opacity: 0;
@@ -784,19 +782,17 @@ const { rotate = false } = Astro.props;
     }
   }
 
-  /* 2. REGLA SIMPLIFICADA: Ahora anima TODOS los .anim-path a la vez */
-  :global(.animate) .container .anim-path {
+  :global(.animate) .container-flowers .anim-path {
     animation: drawAndFill 3s ease-out forwards;
   }
-  /* Eliminamos todos los :nth-child() para que la regla aplique a todos los paths */
 
-  /* --- Media Queries (sin cambios) --- */
+  /* --- MEDIA QUERIES --- */
   @media (max-width: 1440px) {
-    .container { transform: scale(1.2); }
+    .container-flowers { transform: scale(1.2); }
     .rotate { transform: rotate(180deg) scale(1.2); }
   }
   @media (max-width: 900px) {
-    .container { transform: scale(.8); }
+    .container-flowers { transform: scale(.8); }
     .rotate { transform: rotate(180deg) scale(.8); }
   }
 </style>
