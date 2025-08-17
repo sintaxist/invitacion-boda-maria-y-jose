@@ -1,0 +1,8 @@
+---
+import SpainFlag from '@/icons/flags/SpainFlag.astro';
+import UsaFlag from '@/icons/flags/UsaFlag.astro';
+
+const { code, class: className } = Astro.props;
+---
+{code === 'es' && <SpainFlag class={className} />}
+{code === 'en' && <UsaFlag class={className} />}

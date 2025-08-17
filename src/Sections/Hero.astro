@@ -109,6 +109,16 @@ const { t } = Astro.props;
     background-color: var(--color-brown);
   }
 
+  .hero-illustration {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%; /* Hacemos la ilustración más grande que la foto */
+    max-width: 600px;
+    z-index: 1; /* Detrás de la foto */
+  }
+
   /* --- ANIMACIONES --- */
   .containerHero.animate .titleContainer .anim-item:nth-child(1),
   .containerHero.animate .titleContainer .anim-item:nth-child(8) {

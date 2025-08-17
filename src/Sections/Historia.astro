@@ -5,21 +5,27 @@ const { t } = Astro.props;
 ---
 
 <section id="historia" class="container animate-on-scroll">
-  <img 
-    src="/images/SVG/aside-decoration-2.svg" 
-    alt="Decoración lateral" 
-    class="decoration-aside anim-item" 
-  />
+  <!-- <img
+    src="/images/SVG/aside-decoration-2.svg"
+    alt="Decoración lateral"
+    class="decoration-aside anim-item"
+  /> -->
 
   <Title text={t.titulo} color="green" class="anim-item" />
 
   <p class="anim-item">{t.parrafo1}</p>
   <p class="anim-item">{t.parrafo2}</p>
 
-  <img 
-    src="/images/SVG/aside-decoration.svg" 
-    alt="Decoración lateral" 
-    class="decoration-aside rotate anim-item" 
+  <!-- <img
+    src="/images/SVG/aside-decoration.svg"
+    alt="Decoración lateral"
+    class="decoration-aside rotate anim-item"
+  /> -->
+
+  <img
+    src="/images/PNG/our-story.png"
+    alt="Our Story"
+    class="img-story anim-item"
   />
 </section>
 
@@ -27,7 +33,7 @@ const { t } = Astro.props;
   #historia {
     position: relative;
     padding-top: 0px;
-    padding-bottom: calc(6% + 60px);
+    padding-bottom: 4%;
     overflow: hidden;
   }
 
@@ -36,34 +42,47 @@ const { t } = Astro.props;
     font-size: var(--font-4);
     color: var(--color-gray);
     line-height: 1.6;
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0;
   }
 
-  .decoration-aside {
+  /* .decoration-aside {
     position: absolute;
     width: 350px;
     left: -150px;
     z-index: -1;
-  }
-
-  .decoration-aside:not(.rotate) {
-    bottom: 3%;
-    top: unset;
+    top: 45%;
+    transform: translateY(-50%) !important;
   }
 
   .decoration-aside.rotate {
-    top: -1%;
     right: -150px;
     left: inherit;
+  } */
+
+  .img-story {
+    width: 80%;
+    max-width: 500px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 2rem;
+    z-index: 2;
   }
 
   /* --- ANIMACIONES --- */
 
-  :global(.animate) p:nth-of-type(1) { animation-delay: 0.4s; }
-  :global(.animate) p:nth-of-type(2) { animation-delay: 0.6s; }
-  :global(.animate) .decoration-aside { animation-delay: 0.8s; }
-
+  :global(.animate) p:nth-of-type(1) {
+    animation-delay: 0.4s;
+  }
+  :global(.animate) p:nth-of-type(2) {
+    animation-delay: 0.6s;
+  }
+  :global(.animate) .decoration-aside {
+    animation-delay: 0.8s;
+  }
+  :global(.animate) .img-story {
+    animation-delay: 1s;
+  }
 
   /* --- MEDIA QUERIES --- */
   @media (max-width: 900px) {
@@ -71,9 +90,20 @@ const { t } = Astro.props;
       padding: 3rem 6%;
       padding-bottom: calc(6% + 60px);
     }
-  
-    p { font-size: var(--font-5); }
-  
-    .decoration-aside { display: none; }
+
+    p {
+      font-size: var(--font-5);
+    }
+
+    .decoration-aside {
+      display: none;
+    }
+
+    .img-story {
+      width: 60%;
+      max-width: 400px;
+      min-width: 250px;
+      margin-top: 1rem;
+    }
   }
 </style>

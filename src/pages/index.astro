@@ -3,11 +3,9 @@ import { defaultLang } from "@/locales";
 
 const target = `/${defaultLang}/`;
 
-// Redirección nativa de Astro (dev, SSR y adaptadores que la soportan)
 return Astro.redirect(target);
 ---
 
-<!-- Fallback para hostings estáticos que no soportan la redirección anterior -->
 <!doctype html>
 <html lang="es">
   <head>

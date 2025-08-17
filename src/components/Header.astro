@@ -1,10 +1,8 @@
 ---
 import LangSwitcher from "@/components/LangSwitcher.astro";
 
-// Recibimos el objeto de traducciones
 const { t } = Astro.props;
 
-// Creamos las secciones desde las traducciones
 const sections = [
   { id: "inicio", text: t.sections.inicio },
   { id: "historia", text: t.sections.historia },
@@ -13,7 +11,6 @@ const sections = [
   { id: "registro", text: t.sections.registro },
   { id: "hospedaje", text: t.sections.hospedaje },
 ];
-
 ---
 
 <header class="header">
@@ -45,9 +42,8 @@ const sections = [
         ))
       }
       <div class="line"></div>
+      <LangSwitcher />
     </ul>
-
-    <LangSwitcher />
 
     <button class="menu-trigger" aria-label={t.menu.openAria}>
       <div class="bars"></div>
@@ -67,6 +63,9 @@ const sections = [
             </li>
           ))
         }
+        <li class="menu-item container-lang-switcher">
+          <LangSwitcher />
+        </li>
       </ul>
     </div>
   </div>
@@ -116,7 +115,7 @@ const sections = [
     list-style-type: none;
     padding: 0;
     margin: 0;
-    gap: .7rem;
+    gap: 0.7rem;
   }
 
   .menu-desk li a {
@@ -167,7 +166,7 @@ const sections = [
   .menu-trigger span {
     position: absolute;
     bottom: -9px;
-    left: 5px;
+    left: 4px;
     font-size: var(--font-6);
   }
 
@@ -315,6 +314,9 @@ const sections = [
   .menu-mobile.is-active .menu-item:nth-child(6) a {
     transition-delay: 0.55s;
   }
+  .menu-mobile.is-active .menu-item:nth-child(7) {
+    transition-delay: 0.6s;
+  }
 
   .menu-mobile .menu-item.is-active a {
     color: var(--color-brown);
@@ -323,6 +325,14 @@ const sections = [
   .menu-mobile .menu-item.is-active a::before {
     width: 100%;
     background-color: var(--color-brown);
+  }
+
+  .container-lang-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1.2);
+    margin-top: 20px;
   }
 
   header.is-scrolled {
@@ -389,19 +399,25 @@ const sections = [
     const menuTrigger = document.querySelector(".menu-trigger") as HTMLElement;
     const menuMobile = document.querySelector(".menu-mobile") as HTMLElement;
 
-    if (!header || !line || !menuTrigger || !menuMobile || menuDeskLinks.length === 0) {
+    if (
+      !header ||
+      !line ||
+      !menuTrigger ||
+      !menuMobile ||
+      menuDeskLinks.length === 0
+    ) {
       return;
     }
 
     // Cambia el fondo del header al hacer scroll
     const handleHeaderBackground = () => {
       if (window.scrollY > 50) {
-        header.classList.add('is-scrolled');
+        header.classList.add("is-scrolled");
       } else {
-        header.classList.remove('is-scrolled');
+        header.classList.remove("is-scrolled");
       }
     };
-    
+
     // Actualiza la clase '.is-active' en los links del menú
     const updateActiveClass = (activeId: string) => {
       menuDeskItems.forEach((item, index) => {
@@ -425,13 +441,15 @@ const sections = [
 
     // Mueve la barra inferior a la posición del link activo
     const moveLineToActive = () => {
-      const activeItem = document.querySelector(".menu-desk li.is-active") as HTMLElement;
+      const activeItem = document.querySelector(
+        ".menu-desk li.is-active"
+      ) as HTMLElement;
       if (activeItem) {
         line.style.left = `${activeItem.offsetLeft}px`;
         line.style.width = `${activeItem.offsetWidth}px`;
       }
     };
-    
+
     // Detecta la sección visible durante el scroll
     const updateSectionOnScroll = () => {
       const headerHeight = header.offsetHeight;
@@ -442,7 +460,10 @@ const sections = [
           const element = document.getElementById(sectionId);
           if (element) {
             const rect = element.getBoundingClientRect();
-            if (rect.top <= window.innerHeight / 2 && rect.bottom >= headerHeight) {
+            if (
+              rect.top <= window.innerHeight / 2 &&
+              rect.bottom >= headerHeight
+            ) {
               currentSectionId = sectionId;
             }
           }
@@ -468,7 +489,6 @@ const sections = [
 
       const targetElement = document.querySelector(sectionId);
       if (targetElement) {
-        
         const targetId = sectionId.substring(1);
         updateActiveClass(targetId);
         moveLineToActive();
@@ -484,20 +504,20 @@ const sections = [
       }
     };
 
-    window.addEventListener('scroll', onWindowScroll);
-    
+    window.addEventListener("scroll", onWindowScroll);
+
     // Asignamos el evento 'click' a todos los links del menú (escritorio y móvil)
     const allLinks = document.querySelectorAll('a[href^="#"]');
     allLinks.forEach((link) => {
       link.addEventListener("click", smoothScrollToSection);
     });
-    
+
     // Listener para el menú hamburguesa
     menuTrigger.addEventListener("click", () => {
       menuTrigger.classList.toggle("is-active");
       menuMobile.classList.toggle("is-active");
     });
-    
+
     // Ejecutamos las funciones una vez al cargar para el estado inicial correcto
     handleHeaderBackground();
     updateSectionOnScroll();

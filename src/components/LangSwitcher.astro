@@ -1,40 +1,45 @@
 ---
-import { LANGUAGES, defaultLang, type AppLocale } from '@/locales';
+import { LANGUAGES, defaultLang, type AppLocale } from "@/locales";
+import Flag from "@/icons/flags/Flag.astro";
 
-// 1. Detección de Idioma Confiable:
-//    Leemos el idioma directamente de la URL. Si no hay nada (ej. '/'), usamos el idioma por defecto.
-const langCode = (Astro.url.pathname.split('/')[1] || defaultLang) as AppLocale;
-
-const currentLang = LANGUAGES[langCode];
-const otherLangs = Object.entries(LANGUAGES).filter(([code]) => code !== langCode);
+const currentLocale = (Astro.url.pathname.split("/")[1] ||
+  defaultLang) as AppLocale;
+const currentLang = LANGUAGES[currentLocale];
+const otherLangs = Object.entries(LANGUAGES).filter(
+  ([code]) => code !== currentLocale
+);
 ---
 
 <div class="lang-switcher">
   <button class="current-lang-btn">
-    <div class="flag-icon" set:html={currentLang.flag} />
-    <span>{langCode.toUpperCase()}</span>
-    <svg class="chevron" width="12" height="12" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+    <Flag code={currentLocale} class="flag-icon" />
+    <span>{currentLang.name}</span>
+    <svg class="chevron" width="12" height="12" viewBox="0 0 24 24"
+      ><path d="m6 9 6 6 6-6"></path></svg
+    >
   </button>
 
   <ul class="lang-dropdown">
-    {otherLangs.map(([code, lang]) => (
-      <li>
-        <a href={`/${code}/`}>
-          <div class="flag-icon" set:html={lang.flag} />
-          <span>{lang.name}</span>
-        </a>
-      </li>
-    ))}
+    {
+      otherLangs.map(([code, lang]) => (
+        <li>
+          <a href={`/${code}/`}>
+            <Flag code={code} class="flag-icon" />
+            <span>{lang.name}</span>
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </div>
 
 <style>
-  /* 3. Estilos Corregidos y Aislados */
   .lang-switcher {
     position: relative;
     font-family: var(--body-font);
+    height: fit-content;
+    margin: auto;
   }
-
   .current-lang-btn {
     display: flex;
     align-items: center;
@@ -42,14 +47,13 @@ const otherLangs = Object.entries(LANGUAGES).filter(([code]) => code !== langCod
     background-color: white;
     border: 1px solid #eee;
     padding: 0.4rem 0.8rem;
-    border-radius: 50px; /* Forma de "pill" */
+    border-radius: 50px;
     cursor: pointer;
     font-size: var(--font-6);
     font-weight: bold;
     color: var(--color-gray);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   }
-
   .chevron {
     width: 14px;
     height: 14px;
@@ -58,15 +62,17 @@ const otherLangs = Object.entries(LANGUAGES).filter(([code]) => code !== langCod
     fill: none;
     transition: transform 0.3s ease;
   }
-  
-  /* El dropdown empieza oculto */
+  .lang-switcher.is-open .chevron {
+    transform: rotate(180deg);
+  }
+
   .lang-dropdown {
     position: absolute;
     top: calc(100% + 5px);
-    right: 0;
+    right: -0px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     list-style: none;
     padding: 0.5rem;
     margin: 0;
@@ -77,15 +83,10 @@ const otherLangs = Object.entries(LANGUAGES).filter(([code]) => code !== langCod
     transform: translateY(-10px);
     transition: all 0.3s ease;
   }
-
-  /* La clase .is-open hace visible el dropdown y gira la flecha */
   .lang-switcher.is-open .lang-dropdown {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-  }
-  .lang-switcher.is-open .chevron {
-    transform: rotate(180deg);
   }
 
   .lang-dropdown a {
@@ -96,48 +97,60 @@ const otherLangs = Object.entries(LANGUAGES).filter(([code]) => code !== langCod
     text-decoration: none;
     color: var(--color-gray);
     border-radius: 5px;
-    font-size: var(--font-5);
+    font-size: var(--font-6);
+    font-weight: bold;
   }
   .lang-dropdown a:hover {
     background-color: #f5f5f5;
     color: var(--color-brown);
   }
-
-  .flag-icon {
+  :global(.flag-icon) {
     width: 20px;
     height: auto;
+    border-radius: 2px;
     border: 1px solid #eee;
     flex-shrink: 0;
   }
 
-  @keyframes wave {
-    0%, 100% { transform: skewX(0); }
-    50% { transform: skewX(-10deg) skewY(5deg); }
-  }
+  /* --- MEDIA QUERIES --- */
 
-  /* La animación solo se aplica al idioma seleccionado (el del botón) */
-  .current-lang-btn .flag-icon {
-    animation: wave 2.5s ease-in-out infinite;
+  @media (max-width: 900px) {
+    .lang-dropdown {
+      top: unset;
+      bottom: calc(100% + 5px);
+      right: -0px;
+    }
   }
 </style>
 
 <script>
-  function setupLangSwitcher() {
-    const switcher = document.querySelector('.lang-switcher');
-    const button = switcher?.querySelector('.current-lang-btn');
+  function setupLangSwitchers() {
+    const switchers = document.querySelectorAll(".lang-switcher");
 
-    if (!switcher || !button) return;
+    switchers.forEach((switcher) => {
+      const button = switcher.querySelector(".current-lang-btn");
+      if (!button) return;
 
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
-      switcher.classList.toggle('is-open');
+      button.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        switchers.forEach((otherSwitcher) => {
+          if (otherSwitcher !== switcher) {
+            otherSwitcher.classList.remove("is-open");
+          }
+        });
+
+        switcher.classList.toggle("is-open");
+      });
     });
 
-    document.addEventListener('click', () => {
-      if (switcher.classList.contains('is-open')) {
-        switcher.classList.remove('is-open');
-      }
+    document.addEventListener("click", () => {
+      switchers.forEach((switcher) => {
+        if (switcher.classList.contains("is-open")) {
+          switcher.classList.remove("is-open");
+        }
+      });
     });
   }
-  document.addEventListener('DOMContentLoaded', setupLangSwitcher);
+  document.addEventListener("DOMContentLoaded", setupLangSwitchers);
 </script>

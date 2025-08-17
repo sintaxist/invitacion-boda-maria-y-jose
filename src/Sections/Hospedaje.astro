@@ -1,6 +1,7 @@
 ---
 import Title from '@/components/Title.astro';
 import Card from '@/components/Card.astro';
+import CardsContainer from "@/components/CardsContainer.astro";
 
 const { t } = Astro.props;
 const hotels = t.hotels;
@@ -8,7 +9,7 @@ const hotels = t.hotels;
 <section id="hospedaje" class="container container-before-gradient animate-on-scroll">
   <Title text={t.heading} color="green" class="anim-item" />
   <p class="anim-item">{t.description}</p>
-  <div class="cards-container">
+  <CardsContainer>
     {hotels.map((hotel: any, index: number) => (
       <Card
         title={hotel.title}
@@ -24,7 +25,7 @@ const hotels = t.hotels;
         animationDelayIndex={index}
       />
     ))}
-  </div>
+  </CardsContainer>
 </section>
 
 <style>
@@ -37,24 +38,9 @@ const hotels = t.hotels;
     color: var(--color-gray);
   }
 
-  .cards-container {
-    display: flex;
-    gap: 2rem;
-    justify-content: center;
-    width: 100%;
-    max-width: 1200px;
-    z-index: 2;
-  }
-
   /* --- MEDIA QUERIES --- */
 
   @media (max-width: 900px) {
-
-    .cards-container {
-      gap: 1.7rem;
-      flex-wrap: wrap;
-    }
-
     p {
       font-size: var(--font-5);
     }
