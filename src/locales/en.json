@@ -55,27 +55,27 @@
     "descripcion": "A glimpse at the moments that have brought us here. Photos full of love, adventures, and memories we want to share with you before our big day.",
     "images": [
       {
-        "src": "/images/JPG/galeria-1.jpg",
+        "src": "/images/jpg/galeria-1.jpg",
         "alt": "Gallery photo of Maria & Jose 1"
       },
       {
-        "src": "/images/JPG/galeria-2.jpg",
+        "src": "/images/jpg/galeria-2.jpg",
         "alt": "Gallery photo of Maria & Jose 2"
       },
       {
-        "src": "/images/JPG/galeria-3.jpg",
+        "src": "/images/jpg/galeria-3.jpg",
         "alt": "Gallery photo of Maria & Jose 3"
       },
       {
-        "src": "/images/JPG/galeria-4.jpg",
+        "src": "/images/jpg/galeria-4.jpg",
         "alt": "Gallery photo of Maria & Jose 4"
       },
       {
-        "src": "/images/JPG/galeria-5.jpg",
+        "src": "/images/jpg/galeria-5.jpg",
         "alt": "Gallery photo of Maria & Jose 5"
       },
       {
-        "src": "/images/JPG/galeria-6.jpg",
+        "src": "/images/jpg/galeria-6.jpg",
         "alt": "Gallery photo of Maria & Jose 6"
       }
     ]

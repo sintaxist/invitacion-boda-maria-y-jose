@@ -55,27 +55,27 @@
     "descripcion": "Un vistazo a los momentos que nos han traído hasta aquí. Fotos llenas de amor, aventuras y recuerdos que queremos compartir contigo antes de nuestro gran día.",
     "images": [
       {
-        "src": "/images/JPG/galeria-1.jpg",
+        "src": "/images/jpg/galeria-1.jpg",
         "alt": "Foto de la galería de María y José 1"
       },
       {
-        "src": "/images/JPG/galeria-2.jpg",
+        "src": "/images/jpg/galeria-2.jpg",
         "alt": "Foto de la galería de María y José 2"
       },
       {
-        "src": "/images/JPG/galeria-3.jpg",
+        "src": "/images/jpg/galeria-3.jpg",
         "alt": "Foto de la galería de María y José 3"
       },
       {
-        "src": "/images/JPG/galeria-4.jpg",
+        "src": "/images/jpg/galeria-4.jpg",
         "alt": "Foto de la galería de María y José 4"
       },
       {
-        "src": "/images/JPG/galeria-5.jpg",
+        "src": "/images/jpg/galeria-5.jpg",
         "alt": "Foto de la galería de María y José 5"
       },
       {
-        "src": "/images/JPG/galeria-6.jpg",
+        "src": "/images/jpg/galeria-6.jpg",
         "alt": "Foto de la galería de María y José 6"
       }
     ]
