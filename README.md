@@ -4,12 +4,11 @@ Este proyecto es una página web de tipo *landing page* para la boda de María y
 
 El sitio es completamente responsivo, multilingüe (Español e Inglés) y cuenta con animaciones sutiles para crear una experiencia memorable para los invitados.
 
-*(Aquí puedes añadir una captura de pantalla de la página principal)*
-``
+![Captura de pantalla de la invitación de boda para María y José](./docs/Captura.png)
 
 ## 🚀 Demo en Vivo
 *(Añade aquí el enlace a tu sitio una vez que lo despliegues)*
-**[https://tu-invitacion-de-boda.com](https://tu-invitacion-de-boda.com)**
+**[https://invitacion-boda-maria-y-jose-a21a.vercel.app/es/](https://invitacion-boda-maria-y-jose-a21a.vercel.app/es/)**
 
 ---
 ## ✨ Características Principales
