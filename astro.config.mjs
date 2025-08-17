@@ -16,5 +16,6 @@ export default defineConfig({
   trailingSlash: "always",
   i18n: {
     defaultLocale: "es",
+    locales: ['es', 'en'],
   },
 });
