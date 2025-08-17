@@ -14,6 +14,10 @@ export default defineConfig({
     },
   },
   trailingSlash: "always",
+  output: "static",
+  server: {
+    port: 4321,
+  },
   i18n: {
     defaultLocale: "es",
     locales: ['es', 'en'],
