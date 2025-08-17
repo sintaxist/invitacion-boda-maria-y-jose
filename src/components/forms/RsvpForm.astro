@@ -20,7 +20,7 @@ const { t } = Astro.props;
     </div>
 
     <div class="input-group">
-      <input type="text" id="name" name="name" required placeholder=" " />
+      <input type="text" id="name" name="name" required placeholder=" " autocomplete="name"/>
       <label for="name">{t.nameLabel}<span class="required-asterisk">*</span></label>
       <span class="error-message">{t.nameError}</span>
     </div>
