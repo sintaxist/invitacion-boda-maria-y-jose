@@ -39,8 +39,8 @@ const { t } = Astro.props;
         <div class="social-icons">
           <a href={t.social.facebook} aria-label="Facebook" target="_blank"><Facebook /></a>
           <a href={t.social.instagram} aria-label="Instagram" target="_blank"><Instagram /></a>
-          <a href={t.social.mail} aria-label="Correo electrónico" target="_blank"><Mail /></a>
-          <a href={t.social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok"><Tiktok className="icon"/></a>
+          <a href={t.social.mail} aria-label="Mail" target="_blank"><Mail /></a>
+          <a href={t.social.tiktok} target="_blank" rel="noopener noreferrer" aria-label="TikTok"><Tiktok /></a>
         </div>
       </div>
     </div>
@@ -116,8 +116,9 @@ const { t } = Astro.props;
     transition: all 0.3s ease;
   }
 
-  .icon {
-    color: var(--color-brown);
+  .social-icons :global(svg) {
+    width: 30px;
+    height: 30px;
   }
 
   .social-icons a:hover {

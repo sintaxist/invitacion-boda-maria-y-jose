@@ -161,7 +161,8 @@ const { t } = Astro.props;
   }
 
   .lightbox-image {
-    max-width: 85%;
+    max-width: calc(85% - 70px);
+    min-width: 250px;
     max-height: 85%;
     object-fit: contain;
     transition:
@@ -196,7 +197,8 @@ const { t } = Astro.props;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(3px);
     border: none;
     border-radius: 50%;
     width: 50px;
@@ -206,6 +208,7 @@ const { t } = Astro.props;
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease;
+    z-index: 2;
   }
 
   .nav-btn:hover {

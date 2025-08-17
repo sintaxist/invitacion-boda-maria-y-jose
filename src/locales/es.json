@@ -32,19 +32,19 @@
     "cards": [
       {
         "title": "Ceremonia",
-        "description": "Nos uniremos en matrimonio en la Parroquia de Santa María in Trastevere, Roma. Un lugar lleno de historia y significado, donde iniciaremos esta nueva etapa.",
+        "description": "Nos uniremos en matrimonio en la <strong>Parroquia de Santa María in Trastevere, Roma,</strong> el <strong>Sábado 12 de octubre de 2025</strong> a las <strong>4:00 p.m.</strong>.",
         "linkText": "Ver Ubicación",
         "href": "https://maps.app.goo.gl/u5m7yS11sopn1Xx69"
       },
       {
         "title": "Recepción",
-        "description": "Después de la ceremonia, celebraremos juntos en el Vaticano. Una noche para compartir risas, brindar y bailar bajo un escenario único en el mundo.",
+        "description": "Después de la ceremonia, los esperamos en el <strong>Vaticano</strong> a partir de las <strong>7:00 p.m</strong>, para celebrar juntos con una velada llena de música, alegría y momentos inolvidables.",
         "linkText": "Ver Ubicación",
         "href": "https://maps.app.goo.gl/wzNCjDhbVs4EYnPx7"
       },
       {
         "title": "Código de Vestimenta",
-        "description": "Etiqueta formal. Hombres con traje oscuro, mujeres con vestido largo. Los tonos claros y elegantes son bienvenidos para este día especial.",
+        "description": "<strong>Etiqueta formal.</strong> Hombres con traje oscuro, mujeres con vestido largo. Los tonos claros y elegantes son bienvenidos para este día especial.",
         "linkText": "Ver ideas en Pinterest",
         "href": "https://mx.pinterest.com/danielamaciaseventos/c%C3%B3digo-de-vestimenta-boda-sd/"
       }
@@ -94,7 +94,7 @@
     },
     "form": {
       "heading": "Confirma tu asistencia",
-      "description": "Para nosotros es muy importante el compromiso...",
+      "description": "Para nosotros es muy importante el compromiso completa el siguiente formulario para confirma o rechazar tu asistencia.",
       "attendanceQuestion": "¿Asistirás a la fiesta?",
       "yes": "Sí 🥳",
       "no": "No 😓",
@@ -115,7 +115,7 @@
       {
         "title": "Hotel Indigo Rome - St. George",
         "description": "Un elegante hotel boutique de 5 estrellas en la histórica Via Giulia, con una espectacular terraza y vistas a toda Roma.",
-        "linkText": "Ver en más detalles",
+        "linkText": "Ver más detalles",
         "href": "https://maps.app.goo.gl/sMud8rUku2CfTUmV6",
         "rating": 5,
         "distance": "A 5 km del evento",

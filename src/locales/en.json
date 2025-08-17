@@ -32,19 +32,19 @@
     "cards": [
       {
         "title": "Ceremony",
-        "description": "We will join in marriage at the Parish of Santa Maria in Trastevere, Rome. A place full of history and meaning, where we will begin this new stage.",
+        "description": "We will be united in marriage in the <strong>Parish of Santa María in Trastevere, Rome,<strong> on Saturday, October 12, 2025</strong> at <strong>4:00 p.m.</strong>.",
         "linkText": "View Location",
         "href": "https://maps.app.goo.gl/u5m7yS11sopn1Xx69"
       },
       {
         "title": "Reception",
-        "description": "After the ceremony, we will celebrate together at the Vatican. An evening to share laughter, toast and dance under a unique stage in the world.",
+        "description": "After the ceremony, we look forward to seeing you at the <strong>Vatican</strong> starting at <sttong>7:00 p.m.</strong> to celebrate together with an evening filled with music, joy, and unforgettable moments.",
         "linkText": "View Location",
         "href": "https://maps.app.goo.gl/wzNCjDhbVs4EYnPx7"
       },
       {
         "title": "Dress Code",
-        "description": "Formal attire. Men with dark suits, women with long dresses. Light and elegant tones are welcome for this special day.",
+        "description": "<strong>Formal dress code.</strong> Men should wear dark suits, women should wear long dresses. Light, elegant colors are welcome for this special day.",
         "linkText": "See ideas on Pinterest",
         "href": "https://mx.pinterest.com/danielamaciaseventos/c%C3%B3digo-de-vestimenta-boda-sd/"
       }
@@ -81,7 +81,7 @@
     ]
   },
   "registro": {
-    "heading": "Let's share this special moment",
+    "heading": "Your commitment is very important to us. Please complete the following form to confirm or decline your attendance.",
     "contactHeading": "Contact Us",
     "contactGroom": "Contact the Groom",
     "contactBride": "Contact the Bride",
