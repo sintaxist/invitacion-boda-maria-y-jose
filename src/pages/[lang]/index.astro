@@ -9,17 +9,17 @@ import Registro from "@/sections/Registro.astro";
 import Hospedaje from "@/sections/Hospedaje.astro";
 import Footer from "@/components/Footer.astro";
 
-import { languages, defaultLang } from "@/locales";
+import { LANGUAGES, defaultLang, type AppLocale } from '@/locales';
 
-export async function getStaticPaths() {
+export function getStaticPaths() {
   return [
-    { params: { lang: "es" } },
-    { params: { lang: "en" } },
+    { params: { lang: 'es' } },
+    { params: { lang: 'en' } },
   ];
 }
 
-const { lang } = Astro.params;
-const t = languages[lang as keyof typeof languages] ?? languages[defaultLang];
+const { lang = defaultLang } = Astro.params as { lang: AppLocale };
+const t = LANGUAGES[lang].translations;
 ---
 
 <Layout>

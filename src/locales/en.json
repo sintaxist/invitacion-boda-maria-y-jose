@@ -113,28 +113,28 @@
     "description": "For your convenience, we have selected some lodging options close to the event venue with different price ranges.",
     "hotels": [
       {
-        "title": "Hotel de la Paz",
-        "description": "A boutique hotel with historical charm and spectacular views, perfect for a memorable stay.",
-        "linkText": "See on Booking.com",
-        "href": "#",
+        "title": "Hotel Indigo Rome - St. George",
+        "description": "An elegant 5-star boutique hotel on the historic Via Giulia, featuring a spectacular terrace with views over all of Rome.",
+        "linkText": "View more details",
+        "href": "https://maps.app.goo.gl/sMud8rUku2CfTUmV6",
         "rating": 5,
         "distance": "5 km from the event",
         "priceRange": "250 - 400 €"
       },
       {
-        "title": "Posada Santa Fe",
-        "description": "Enjoy traditional hospitality in a relaxed and cozy atmosphere. Perfect for families.",
-        "linkText": "Book Now",
-        "href": "#",
+        "title": "Starhotels Michelangelo Rome",
+        "description": "A classic 4-star hotel steps from St. Peter's Square, offering timeless comfort and direct Vatican views.",
+        "linkText": "View more details",
+        "href": "https://maps.app.goo.gl/2NX7f6NoZbVJtitq5",
         "rating": 4,
         "distance": "8 km from the event",
         "priceRange": "150 - 220 €"
       },
       {
-        "title": "Casa Florencia",
-        "description": "A modern and comfortable option with all amenities. Excellent value for money.",
-        "linkText": "Visit Website",
-        "href": "#",
+        "title": "Hotel Paolo II",
+        "description": "A  modern and cozy 3-star option, noted for its excellent service and great value for money.",
+        "linkText": "View more details",
+        "href": "https://maps.app.goo.gl/2Vv5rWF8CmCeUKag8",
         "rating": 4,
         "distance": "12 km from the event",
         "priceRange": "100 - 180 €"

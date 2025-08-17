@@ -1,37 +1,143 @@
 ---
-import { languages } from "@/locales";
+import { LANGUAGES, defaultLang, type AppLocale } from '@/locales';
 
-const { lang } = Astro.params; // idioma actual
-const availableLangs = Object.keys(languages); // ["es", "en"]
+// 1. Detección de Idioma Confiable:
+//    Leemos el idioma directamente de la URL. Si no hay nada (ej. '/'), usamos el idioma por defecto.
+const langCode = (Astro.url.pathname.split('/')[1] || defaultLang) as AppLocale;
 
-// idioma alternativo (si solo tienes 2 idiomas)
-const altLang = availableLangs.find((l) => l !== lang) ?? "es";
-
-// reconstruimos la URL actual pero con el otro idioma
-const currentPath = Astro.url.pathname; // ej: /es/detalles
-const newPath = currentPath.replace(`/${lang}`, `/${altLang}`);
+const currentLang = LANGUAGES[langCode];
+const otherLangs = Object.entries(LANGUAGES).filter(([code]) => code !== langCode);
 ---
 
 <div class="lang-switcher">
-  <a href={newPath} class="lang-link">
-    {altLang.toUpperCase()}
-  </a>
+  <button class="current-lang-btn">
+    <div class="flag-icon" set:html={currentLang.flag} />
+    <span>{langCode.toUpperCase()}</span>
+    <svg class="chevron" width="12" height="12" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+  </button>
+
+  <ul class="lang-dropdown">
+    {otherLangs.map(([code, lang]) => (
+      <li>
+        <a href={`/${code}/`}>
+          <div class="flag-icon" set:html={lang.flag} />
+          <span>{lang.name}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
 </div>
 
 <style>
+  /* 3. Estilos Corregidos y Aislados */
   .lang-switcher {
-    display: inline-block;
-    margin-left: 1rem;
+    position: relative;
+    font-family: var(--body-font);
   }
 
-  .lang-link {
-    text-decoration: none;
+  .current-lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: white;
+    border: 1px solid #eee;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px; /* Forma de "pill" */
+    cursor: pointer;
+    font-size: var(--font-6);
     font-weight: bold;
-    color: var(--color-primary, #6630ff);
-    transition: opacity 0.2s ease;
+    color: var(--color-gray);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
   }
 
-  .lang-link:hover {
-    opacity: 0.7;
+  .chevron {
+    width: 14px;
+    height: 14px;
+    stroke: var(--color-gray);
+    stroke-width: 2;
+    fill: none;
+    transition: transform 0.3s ease;
+  }
+  
+  /* El dropdown empieza oculto */
+  .lang-dropdown {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    list-style: none;
+    padding: 0.5rem;
+    margin: 0;
+    z-index: 10;
+    width: max-content;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  /* La clase .is-open hace visible el dropdown y gira la flecha */
+  .lang-switcher.is-open .lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .lang-switcher.is-open .chevron {
+    transform: rotate(180deg);
+  }
+
+  .lang-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: var(--color-gray);
+    border-radius: 5px;
+    font-size: var(--font-5);
+  }
+  .lang-dropdown a:hover {
+    background-color: #f5f5f5;
+    color: var(--color-brown);
+  }
+
+  .flag-icon {
+    width: 20px;
+    height: auto;
+    border: 1px solid #eee;
+    flex-shrink: 0;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: skewX(0); }
+    50% { transform: skewX(-10deg) skewY(5deg); }
+  }
+
+  /* La animación solo se aplica al idioma seleccionado (el del botón) */
+  .current-lang-btn .flag-icon {
+    animation: wave 2.5s ease-in-out infinite;
   }
 </style>
+
+<script>
+  function setupLangSwitcher() {
+    const switcher = document.querySelector('.lang-switcher');
+    const button = switcher?.querySelector('.current-lang-btn');
+
+    if (!switcher || !button) return;
+
+    button.addEventListener('click', (e) => {
+      e.stopPropagation();
+      switcher.classList.toggle('is-open');
+    });
+
+    document.addEventListener('click', () => {
+      if (switcher.classList.contains('is-open')) {
+        switcher.classList.remove('is-open');
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', setupLangSwitcher);
+</script>

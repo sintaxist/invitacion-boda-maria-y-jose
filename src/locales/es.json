@@ -5,10 +5,10 @@
     "sections": {
       "inicio": "Inicio",
       "historia": "Nuestra historia",
-      "detalles": "Detalles de la boda",
+      "detalles": "Detalles boda",
       "galeria": "Galería",
       "registro": "Confirma tu asistencia",
-      "hospedaje": "Hospedaje cercano"
+      "hospedaje": "Hospedaje"
     },
     "menu": {
       "openAria": "Abrir menú",
@@ -113,29 +113,29 @@
     "description": "Para tu comodidad, hemos seleccionado algunas opciones de hospedaje cercanas al lugar del evento con diferentes rangos de precios.",
     "hotels": [
       {
-        "title": "Hotel de la Paz",
-        "description": "Un hotel boutique con encanto histórico y vistas espectaculares, ideal para una estancia memorable.",
-        "linkText": "Ver en Booking.com",
-        "href": "#",
+        "title": "Hotel Indigo Rome - St. George",
+        "description": "Un elegante hotel boutique de 5 estrellas en la histórica Via Giulia, con una espectacular terraza y vistas a toda Roma.",
+        "linkText": "Ver en más detalles",
+        "href": "https://maps.app.goo.gl/sMud8rUku2CfTUmV6",
         "rating": 5,
         "distance": "A 5 km del evento",
         "priceRange": "250 - 400 €"
       },
       {
-        "title": "Posada Santa Fe",
-        "description": "Disfruta de la hospitalidad tradicional en un ambiente relajado y acogedor. Perfecto para familias.",
-        "linkText": "Reservar ahora",
-        "href": "#",
+        "title": "Starhotels Michelangelo Rome",
+        "description": "Un hotel clásico de 4 estrellas a solo pasos de la Plaza de San Pedro, ofreciendo un confort atemporal y vistas directas al Vaticano.",
+        "linkText": "Ver más detalles",
+        "href": "https://maps.app.goo.gl/2NX7f6NoZbVJtitq5",
         "rating": 4,
         "distance": "A 8 km del evento",
         "priceRange": "150 - 220 €"
       },
       {
-        "title": "Casa Florencia",
-        "description": "Una opción moderna y cómoda con todas las amenidades. Excelente relación calidad-precio.",
-        "linkText": "Ver sitio web",
-        "href": "#",
-        "rating": 4,
+        "title": "Hotel Paolo II",
+        "description": "Una opción moderna y acogedora de 3 estrellas, destacada por su excelente servicio y gran relación calidad-precio.",
+        "linkText": "Ver más detalles",
+        "href": "https://maps.app.goo.gl/2Vv5rWF8CmCeUKag8",
+        "rating": 3,
         "distance": "A 12 km del evento",
         "priceRange": "100 - 180 €"
       }
