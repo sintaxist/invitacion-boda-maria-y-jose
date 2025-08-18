@@ -32,7 +32,7 @@
     "cards": [
       {
         "title": "Ceremony",
-        "description": "We will be united in marriage in the <strong>Parish of Santa María in Trastevere, Rome,</strong><strong> on Saturday, October 12, 2025</strong> at <strong>4:00 p.m.</strong>.",
+        "description": "We will be united in marriage in the <strong>Parish of Santa María in Trastevere, Rome,</strong><strong> on Saturday, October 12, 2025</strong> at <strong>4:00 p.m.</strong>",
         "linkText": "View Location",
         "href": "https://maps.app.goo.gl/u5m7yS11sopn1Xx69"
       },
@@ -81,7 +81,7 @@
     ]
   },
   "registro": {
-    "heading": "Your commitment is very important to us. Please complete the following form to confirm or decline your attendance.",
+    "heading": "Let's share this special moment",
     "contactHeading": "Contact Us",
     "contactGroom": "Contact the Groom",
     "contactBride": "Contact the Bride",
@@ -94,7 +94,7 @@
     },
     "form": {
       "heading": "Confirm your attendance",
-      "description": "It's very important to us that you commit...",
+      "description": "Your commitment is very important to us. Please complete the following form to confirm or decline your attendance.",
       "attendanceQuestion": "Will you attend the party?",
       "yes": "Yes 🥳",
       "no": "No 😓",
@@ -135,7 +135,7 @@
         "description": "A  modern and cozy 3-star option, noted for its excellent service and great value for money.",
         "linkText": "View more details",
         "href": "https://maps.app.goo.gl/2Vv5rWF8CmCeUKag8",
-        "rating": 4,
+        "rating": 3,
         "distance": "12 km from the event",
         "priceRange": "100 - 180 €"
       }
