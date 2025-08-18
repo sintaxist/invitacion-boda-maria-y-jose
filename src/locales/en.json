@@ -32,13 +32,13 @@
     "cards": [
       {
         "title": "Ceremony",
-        "description": "We will be united in marriage in the <strong>Parish of Santa María in Trastevere, Rome,<strong> on Saturday, October 12, 2025</strong> at <strong>4:00 p.m.</strong>.",
+        "description": "We will be united in marriage in the <strong>Parish of Santa María in Trastevere, Rome,</strong><strong> on Saturday, October 12, 2025</strong> at <strong>4:00 p.m.</strong>.",
         "linkText": "View Location",
         "href": "https://maps.app.goo.gl/u5m7yS11sopn1Xx69"
       },
       {
         "title": "Reception",
-        "description": "After the ceremony, we look forward to seeing you at the <strong>Vatican</strong> starting at <sttong>7:00 p.m.</strong> to celebrate together with an evening filled with music, joy, and unforgettable moments.",
+        "description": "After the ceremony, we look forward to seeing you at the <strong>Vatican</strong> starting at <strong>7:00 p.m.</strong> to celebrate together with an evening filled with music, joy, and unforgettable moments.",
         "linkText": "View Location",
         "href": "https://maps.app.goo.gl/wzNCjDhbVs4EYnPx7"
       },
@@ -87,10 +87,10 @@
     "contactBride": "Contact the Bride",
     "socialText": "You can also find us on:",
     "social": {
-      "facebook": "https://facebook.com/...",
-      "instagram": "https://instagram.com/...",
-      "mail": "mailto:...",
-      "tiktok": "https://tiktok.com/..."
+      "facebook": "https://www.linkedin.com/in/alejandro-canek?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+      "instagram": "https://www.instagram.com/alejandrocanek?igsh=MXB4eWxpa3BrdHI2NQ==.",
+      "mail": "mailto:alejandro.canek.dev@gmail.com?subject=Boda%20Mar%C3%ADa%20y%20Jos%C3%A9&body=Hola%2C%20quiero%20hablar%20sobre%20la%20boda%20%F0%9F%A4%B5%F0%9F%8F%BC%E2%80%8D%E2%99%82%EF%B8%8F%F0%9F%91%B0%F0%9F%8F%BC",
+      "tiktok": "https://www.tiktok.com/es/"
     },
     "form": {
       "heading": "Confirm your attendance",
